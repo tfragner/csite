@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "delivery",
+            "otherEntityName": "delivery",
+            "otherEntityRelationshipName": "person"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "constructionsite",
+            "otherEntityName": "constructionSite",
+            "otherEntityRelationshipName": "container"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "constsitecustomer",
+            "otherEntityName": "constructionSite",
+            "otherEntityRelationshipName": "customer"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "PersonType",
+            "fieldValues": "SUPPLIER,CUSTOMER,PERSON"
+        }
+    ],
+    "changelogDate": "20171105204546",
+    "entityTableName": "person",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
+}

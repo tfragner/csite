@@ -1,0 +1,81 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "article",
+            "otherEntityName": "article",
+            "otherEntityRelationshipName": "delivery"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "checklist",
+            "otherEntityName": "checklist",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "delivery"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "workpackage",
+            "otherEntityName": "workPackage",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "person",
+            "otherEntityName": "person",
+            "otherEntityField": "lastName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "location",
+            "otherEntityName": "location",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "orderNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "kalenderwoche",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "unloading",
+            "fieldType": "UnloadingType",
+            "fieldValues": "KRAN,STAPLER,HAND"
+        },
+        {
+            "fieldName": "avisoType",
+            "fieldType": "AvisoType",
+            "fieldValues": "MATANLIEFERUNG,ENTSORGUNG"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "DeliveryStatus",
+            "fieldValues": "OPEN,CLOSED,RECLAMATION"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "lkwType",
+            "fieldType": "LKWType",
+            "fieldValues": "T35,T70,T400"
+        }
+    ],
+    "changelogDate": "20171105204544",
+    "entityTableName": "delivery",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
+}

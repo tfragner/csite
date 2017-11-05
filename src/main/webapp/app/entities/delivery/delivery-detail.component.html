@@ -1,0 +1,76 @@
+
+<div *ngIf="delivery">
+    <h2><span jhiTranslate="csiteApp.delivery.detail.title">Delivery</span> {{delivery.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="csiteApp.delivery.orderNumber">Order Number</span></dt>
+        <dd>
+            <span>{{delivery.orderNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.kalenderwoche">Kalenderwoche</span></dt>
+        <dd>
+            <span>{{delivery.kalenderwoche}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.date">Date</span></dt>
+        <dd>
+            <span>{{delivery.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.unloading">Unloading</span></dt>
+        <dd>
+            <span jhiTranslate="{{'csiteApp.UnloadingType.' + delivery.unloading}}">{{delivery.unloading}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.avisoType">Aviso Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'csiteApp.AvisoType.' + delivery.avisoType}}">{{delivery.avisoType}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'csiteApp.DeliveryStatus.' + delivery.status}}">{{delivery.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.image">Image</span></dt>
+        <dd>
+            <div *ngIf="delivery.image">
+                <a (click)="openFile(delivery.imageContentType, delivery.image)">
+                    <img [src]="'data:' + delivery.imageContentType + ';base64,' + delivery.image" style="max-width: 100%;" alt="delivery image"/>
+                </a>
+                {{delivery.imageContentType}}, {{byteSize(delivery.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.lkwType">Lkw Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'csiteApp.LKWType.' + delivery.lkwType}}">{{delivery.lkwType}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.workpackage">Workpackage</span></dt>
+        <dd>
+            <div *ngIf="delivery.workpackageId">
+                <a [routerLink]="['/work-package', delivery.workpackageId]">{{delivery.workpackageName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.person">Person</span></dt>
+        <dd>
+            <div *ngIf="delivery.personId">
+                <a [routerLink]="['/person', delivery.personId]">{{delivery.personLastName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.delivery.location">Location</span></dt>
+        <dd>
+            <div *ngIf="delivery.locationId">
+                <a [routerLink]="['/location', delivery.locationId]">{{delivery.locationName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

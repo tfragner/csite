@@ -1,0 +1,67 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myConstructionSiteLabel" jhiTranslate="csiteApp.constructionSite.home.createOrEditLabel">Create or edit a Construction Site</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!constructionSite.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="constructionSite.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.prjNumber" for="field_prjNumber">Prj Number</label>
+            <input type="number" class="form-control" name="prjNumber" id="field_prjNumber"
+                [(ngModel)]="constructionSite.prjNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.prjName" for="field_prjName">Prj Name</label>
+            <input type="text" class="form-control" name="prjName" id="field_prjName"
+                [(ngModel)]="constructionSite.prjName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.kran" for="field_kran">Kran</label>
+            <input type="checkbox" class="form-control" name="kran" id="field_kran"
+                [(ngModel)]="constructionSite.kran"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.stapler" for="field_stapler">Stapler</label>
+            <input type="checkbox" class="form-control" name="stapler" id="field_stapler"
+                [(ngModel)]="constructionSite.stapler"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.maxLKWType" for="field_maxLKWType">Max LKW Type</label>
+            <select class="form-control" name="maxLKWType" [(ngModel)]="constructionSite.maxLKWType" id="field_maxLKWType" >
+                <option value="T35">{{'csiteApp.LKWType.T35' | translate}}</option>
+                <option value="T70">{{'csiteApp.LKWType.T70' | translate}}</option>
+                <option value="T400">{{'csiteApp.LKWType.T400' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.container" for="field_container">Container</label>
+            <select class="form-control" id="field_container" name="container" [(ngModel)]="constructionSite.containerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.lastName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.customer" for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="constructionSite.customerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.lastName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

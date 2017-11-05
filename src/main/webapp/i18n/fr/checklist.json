@@ -1,0 +1,26 @@
+{
+    "csiteApp": {
+        "checklist" : {
+            "home": {
+                "title": "Checklists",
+                "createLabel": "Créer un nouveau Checklist",
+                "createOrEditLabel": "Créer ou éditer un Checklist"
+            },
+            "created": "Un nouveau Checklist a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Checklist avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Checklist avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Checklist {{ id }} ?"
+            },
+            "detail": {
+                "title": "Checklist"
+            },
+            "inTime": "In Time",
+            "complete": "Complete",
+            "unloadingOk": "Unloading Ok",
+            "notDamaged": "Not Damaged",
+            "description": "Description",
+            "delivery": "Delivery"
+        }
+    }
+}
