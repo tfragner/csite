@@ -1,0 +1,58 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "workpackage",
+            "otherEntityName": "workPackage",
+            "otherEntityRelationshipName": "constructionsite"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "location",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "constructionSite"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "container",
+            "otherEntityName": "person",
+            "otherEntityField": "lastName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "person",
+            "otherEntityField": "lastName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "prjNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prjName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "kran",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "stapler",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "maxLKWType",
+            "fieldType": "LKWType",
+            "fieldValues": "T35,T70,T400"
+        }
+    ],
+    "changelogDate": "20171105204541",
+    "entityTableName": "construction_site",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
+}

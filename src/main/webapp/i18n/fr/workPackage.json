@@ -1,0 +1,25 @@
+{
+    "csiteApp": {
+        "workPackage" : {
+            "home": {
+                "title": "WorkPackages",
+                "createLabel": "Créer un nouveau Work Package",
+                "createOrEditLabel": "Créer ou éditer un Work Package"
+            },
+            "created": "Un nouveau Work Package a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Work Package avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Work Package avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Work Package {{ id }} ?"
+            },
+            "detail": {
+                "title": "Work Package"
+            },
+            "name": "Name",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "delivery": "Delivery",
+            "constructionsite": "Constructionsite"
+        }
+    }
+}

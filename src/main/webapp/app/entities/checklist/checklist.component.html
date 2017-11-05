@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="csiteApp.checklist.home.title">Checklists</span>
+        <button class="btn btn-primary float-right jh-create-entity create-checklist" [routerLink]="['/', { outlets: { popup: ['checklist-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="csiteApp.checklist.home.createLabel">
+            Create new Checklist
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="checklists">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="csiteApp.checklist.inTime">In Time</span></th>
+            <th><span jhiTranslate="csiteApp.checklist.complete">Complete</span></th>
+            <th><span jhiTranslate="csiteApp.checklist.unloadingOk">Unloading Ok</span></th>
+            <th><span jhiTranslate="csiteApp.checklist.notDamaged">Not Damaged</span></th>
+            <th><span jhiTranslate="csiteApp.checklist.description">Description</span></th>
+            <th><span jhiTranslate="csiteApp.checklist.delivery">Delivery</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let checklist of checklists ;trackBy: trackId">
+                <td><a [routerLink]="['../checklist', checklist.id ]">{{checklist.id}}</a></td>
+                <td>{{checklist.inTime}}</td>
+                <td>{{checklist.complete}}</td>
+                <td>{{checklist.unloadingOk}}</td>
+                <td>{{checklist.notDamaged}}</td>
+                <td>{{checklist.description}}</td>
+                <td>
+                    <div *ngIf="checklist.deliveryId">
+                        <a [routerLink]="['../delivery', checklist.deliveryId  ]" >{{checklist.deliveryId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../checklist', checklist.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'checklist/'+ checklist.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'checklist/'+ checklist.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

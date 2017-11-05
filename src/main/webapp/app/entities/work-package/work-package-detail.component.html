@@ -1,0 +1,39 @@
+
+<div *ngIf="workPackage">
+    <h2><span jhiTranslate="csiteApp.workPackage.detail.title">Work Package</span> {{workPackage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="csiteApp.workPackage.name">Name</span></dt>
+        <dd>
+            <span>{{workPackage.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.workPackage.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{workPackage.startDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.workPackage.endDate">End Date</span></dt>
+        <dd>
+            <span>{{workPackage.endDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.workPackage.constructionsite">Constructionsite</span></dt>
+        <dd>
+            <div *ngIf="workPackage.constructionsiteId">
+                <a [routerLink]="['/construction-site', workPackage.constructionsiteId]">{{workPackage.constructionsitePrjName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'work-package/'+ workPackage.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

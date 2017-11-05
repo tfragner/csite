@@ -1,0 +1,33 @@
+{
+    "csiteApp": {
+        "delivery" : {
+            "home": {
+                "title": "Deliveries",
+                "createLabel": "Create a new Delivery",
+                "createOrEditLabel": "Create or edit a Delivery"
+            },
+            "created": "A new Delivery is created with identifier {{ param }}",
+            "updated": "A Delivery is updated with identifier {{ param }}",
+            "deleted": "A Delivery is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Delivery {{ id }}?"
+            },
+            "detail": {
+                "title": "Delivery"
+            },
+            "orderNumber": "Order Number",
+            "kalenderwoche": "Kalenderwoche",
+            "date": "Date",
+            "unloading": "Unloading",
+            "avisoType": "Aviso Type",
+            "status": "Status",
+            "image": "Image",
+            "lkwType": "Lkw Type",
+            "article": "Article",
+            "checklist": "Checklist",
+            "workpackage": "Workpackage",
+            "person": "Person",
+            "location": "Location"
+        }
+    }
+}

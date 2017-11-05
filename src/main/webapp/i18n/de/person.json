@@ -1,0 +1,26 @@
+{
+    "csiteApp": {
+        "person" : {
+            "home": {
+                "title": "People",
+                "createLabel": "Person erstellen",
+                "createOrEditLabel": "Person erstellen oder bearbeiten"
+            },
+            "created": "Person erstellt mit ID {{ param }}",
+            "updated": "Person aktualisiert mit ID {{ param }}",
+            "deleted": "Person gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Person {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Person"
+            },
+            "lastName": "Last Name",
+            "firstName": "First Name",
+            "type": "Type",
+            "delivery": "Delivery",
+            "constructionsite": "Constructionsite",
+            "constsitecustomer": "Constsitecustomer"
+        }
+    }
+}

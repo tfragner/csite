@@ -1,0 +1,111 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDeliveryLabel" jhiTranslate="csiteApp.delivery.home.createOrEditLabel">Create or edit a Delivery</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!delivery.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="delivery.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.orderNumber" for="field_orderNumber">Order Number</label>
+            <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
+                [(ngModel)]="delivery.orderNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.kalenderwoche" for="field_kalenderwoche">Kalenderwoche</label>
+            <input type="number" class="form-control" name="kalenderwoche" id="field_kalenderwoche"
+                [(ngModel)]="delivery.kalenderwoche"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.date" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="delivery.date"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.unloading" for="field_unloading">Unloading</label>
+            <select class="form-control" name="unloading" [(ngModel)]="delivery.unloading" id="field_unloading" >
+                <option value="KRAN">{{'csiteApp.UnloadingType.KRAN' | translate}}</option>
+                <option value="STAPLER">{{'csiteApp.UnloadingType.STAPLER' | translate}}</option>
+                <option value="HAND">{{'csiteApp.UnloadingType.HAND' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.avisoType" for="field_avisoType">Aviso Type</label>
+            <select class="form-control" name="avisoType" [(ngModel)]="delivery.avisoType" id="field_avisoType" >
+                <option value="MATANLIEFERUNG">{{'csiteApp.AvisoType.MATANLIEFERUNG' | translate}}</option>
+                <option value="ENTSORGUNG">{{'csiteApp.AvisoType.ENTSORGUNG' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="delivery.status" id="field_status" >
+                <option value="OPEN">{{'csiteApp.DeliveryStatus.OPEN' | translate}}</option>
+                <option value="CLOSED">{{'csiteApp.DeliveryStatus.CLOSED' | translate}}</option>
+                <option value="RECLAMATION">{{'csiteApp.DeliveryStatus.RECLAMATION' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.image" for="field_image">Image</label>
+            <div>
+                <img [src]="'data:' + delivery.imageContentType + ';base64,' + delivery.image" style="max-height: 100px;" *ngIf="delivery.image" alt="delivery image"/>
+                <div *ngIf="delivery.image" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{delivery.imageContentType}}, {{byteSize(delivery.image)}}</span>
+                    <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_image" (change)="setFileData($event, delivery, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="image" id="field_image"
+                [(ngModel)]="delivery.image"  />
+            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                [(ngModel)]="delivery.imageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.lkwType" for="field_lkwType">Lkw Type</label>
+            <select class="form-control" name="lkwType" [(ngModel)]="delivery.lkwType" id="field_lkwType" >
+                <option value="T35">{{'csiteApp.LKWType.T35' | translate}}</option>
+                <option value="T70">{{'csiteApp.LKWType.T70' | translate}}</option>
+                <option value="T400">{{'csiteApp.LKWType.T400' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.workpackage" for="field_workpackage">Workpackage</label>
+            <select class="form-control" id="field_workpackage" name="workpackage" [(ngModel)]="delivery.workpackageId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="workPackageOption.id" *ngFor="let workPackageOption of workpackages; trackBy: trackWorkPackageById">{{workPackageOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.person" for="field_person">Person</label>
+            <select class="form-control" id="field_person" name="person" [(ngModel)]="delivery.personId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.lastName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.delivery.location" for="field_location">Location</label>
+            <select class="form-control" id="field_location" name="location" [(ngModel)]="delivery.locationId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="locationOption.id" *ngFor="let locationOption of locations; trackBy: trackLocationById">{{locationOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
