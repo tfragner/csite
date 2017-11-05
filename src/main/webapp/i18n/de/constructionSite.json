@@ -1,0 +1,29 @@
+{
+    "csiteApp": {
+        "constructionSite" : {
+            "home": {
+                "title": "Construction Sites",
+                "createLabel": "Construction Site erstellen",
+                "createOrEditLabel": "Construction Site erstellen oder bearbeiten"
+            },
+            "created": "Construction Site erstellt mit ID {{ param }}",
+            "updated": "Construction Site aktualisiert mit ID {{ param }}",
+            "deleted": "Construction Site gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Construction Site {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Construction Site"
+            },
+            "prjNumber": "Prj Number",
+            "prjName": "Prj Name",
+            "kran": "Kran",
+            "stapler": "Stapler",
+            "maxLKWType": "Max LKW Type",
+            "workpackage": "Workpackage",
+            "location": "Location",
+            "container": "Container",
+            "customer": "Customer"
+        }
+    }
+}

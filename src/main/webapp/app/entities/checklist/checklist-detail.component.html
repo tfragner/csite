@@ -1,0 +1,47 @@
+
+<div *ngIf="checklist">
+    <h2><span jhiTranslate="csiteApp.checklist.detail.title">Checklist</span> {{checklist.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="csiteApp.checklist.inTime">In Time</span></dt>
+        <dd>
+            <span>{{checklist.inTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.checklist.complete">Complete</span></dt>
+        <dd>
+            <span>{{checklist.complete}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.checklist.unloadingOk">Unloading Ok</span></dt>
+        <dd>
+            <span>{{checklist.unloadingOk}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.checklist.notDamaged">Not Damaged</span></dt>
+        <dd>
+            <span>{{checklist.notDamaged}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.checklist.description">Description</span></dt>
+        <dd>
+            <span>{{checklist.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.checklist.delivery">Delivery</span></dt>
+        <dd>
+            <div *ngIf="checklist.deliveryId">
+                <a [routerLink]="['/delivery', checklist.deliveryId]">{{checklist.deliveryId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'checklist/'+ checklist.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

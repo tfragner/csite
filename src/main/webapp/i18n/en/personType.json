@@ -1,0 +1,10 @@
+{
+    "csiteApp": {
+        "PersonType" : {
+            "null": "",
+            "SUPPLIER": "SUPPLIER",
+            "CUSTOMER": "CUSTOMER",
+            "PERSON": "PERSON"
+        }
+    }
+}

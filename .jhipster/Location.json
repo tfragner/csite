@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "delivery",
+            "otherEntityName": "delivery",
+            "otherEntityRelationshipName": "location"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "constructionSite",
+            "otherEntityName": "constructionSite",
+            "otherEntityField": "prjName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20171105204542",
+    "entityTableName": "location",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
+}

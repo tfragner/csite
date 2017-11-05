@@ -41,6 +41,21 @@ public class CacheConfiguration {
             cm.createCache(at.meroff.se.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(at.meroff.se.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(at.meroff.se.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.ConstructionSite.class.getName(), jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.ConstructionSite.class.getName() + ".workpackages", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.ConstructionSite.class.getName() + ".locations", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Location.class.getName(), jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Location.class.getName() + ".deliveries", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.WorkPackage.class.getName(), jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.WorkPackage.class.getName() + ".deliveries", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Delivery.class.getName(), jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Delivery.class.getName() + ".articles", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Article.class.getName(), jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Person.class.getName(), jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Person.class.getName() + ".deliveries", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Person.class.getName() + ".constructionsites", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Person.class.getName() + ".constsitecustomers", jcacheConfiguration);
+            cm.createCache(at.meroff.se.domain.Checklist.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

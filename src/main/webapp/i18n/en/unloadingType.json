@@ -1,0 +1,10 @@
+{
+    "csiteApp": {
+        "UnloadingType" : {
+            "null": "",
+            "KRAN": "KRAN",
+            "STAPLER": "STAPLER",
+            "HAND": "HAND"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ConstructionSite.
+    -->
+    <changeSet id="20171105204541-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="container_id"
+                                 baseTableName="construction_site"
+                                 constraintName="fk_construction_site_container_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="construction_site"
+                                 constraintName="fk_construction_site_customer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+    </changeSet>
+</databaseChangeLog>

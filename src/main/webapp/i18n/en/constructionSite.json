@@ -1,0 +1,29 @@
+{
+    "csiteApp": {
+        "constructionSite" : {
+            "home": {
+                "title": "Construction Sites",
+                "createLabel": "Create a new Construction Site",
+                "createOrEditLabel": "Create or edit a Construction Site"
+            },
+            "created": "A new Construction Site is created with identifier {{ param }}",
+            "updated": "A Construction Site is updated with identifier {{ param }}",
+            "deleted": "A Construction Site is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Construction Site {{ id }}?"
+            },
+            "detail": {
+                "title": "Construction Site"
+            },
+            "prjNumber": "Prj Number",
+            "prjName": "Prj Name",
+            "kran": "Kran",
+            "stapler": "Stapler",
+            "maxLKWType": "Max LKW Type",
+            "workpackage": "Workpackage",
+            "location": "Location",
+            "container": "Container",
+            "customer": "Customer"
+        }
+    }
+}

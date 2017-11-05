@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "delivery",
+            "otherEntityName": "delivery",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "checklist"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "inTime",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "complete",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "unloadingOk",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "notDamaged",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171105204547",
+    "entityTableName": "checklist",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
+}

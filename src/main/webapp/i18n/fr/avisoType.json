@@ -1,0 +1,9 @@
+{
+    "csiteApp": {
+        "AvisoType" : {
+            "null": "",
+            "MATANLIEFERUNG": "MATANLIEFERUNG",
+            "ENTSORGUNG": "ENTSORGUNG"
+        }
+    }
+}
