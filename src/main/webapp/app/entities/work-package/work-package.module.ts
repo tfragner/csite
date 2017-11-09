@@ -44,6 +44,9 @@ const ENTITY_STATES = [
         WorkPackageService,
         WorkPackagePopupService,
     ],
+    exports: [
+        WorkPackageComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CsiteWorkPackageModule {}

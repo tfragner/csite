@@ -122,4 +122,18 @@ public class WorkPackageResource {
         workPackageService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * GET  /work-packages/construction_site/:id : get all the workPackages by construction site id.
+     *
+     * @param id the construction site id
+     * @return the ResponseEntity with status 200 (OK) and the list of workPackages in body
+     */
+    @GetMapping("/work-packages/construction_site/{id}")
+    @Timed
+    public ResponseEntity<List<WorkPackageDTO>> getAllByConstructionsite_Id(@PathVariable Long id) {
+        log.debug("REST request to get WorkPackages by construction site id: {}", id);
+        List<WorkPackageDTO> entityList = workPackageService.findAllByConstructionsite_Id(id);
+        return ResponseEntity.ok().body(entityList);
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -15,6 +15,7 @@ export class WorkPackageComponent implements OnInit, OnDestroy {
 workPackages: WorkPackage[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    @Input() csiteId: number;
 
     constructor(
         private workPackageService: WorkPackageService,
@@ -25,12 +26,21 @@ workPackages: WorkPackage[];
     }
 
     loadAll() {
-        this.workPackageService.query().subscribe(
-            (res: ResponseWrapper) => {
-                this.workPackages = res.json;
-            },
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
+        if (this.csiteId) {
+            this.workPackageService.queryByConstructionSite(this.csiteId).subscribe(
+                (res: ResponseWrapper) => {
+                    this.workPackages = res.json;
+                },
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
+        } else {
+            this.workPackageService.query().subscribe(
+                (res: ResponseWrapper) => {
+                    this.workPackages = res.json;
+                },
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
+        }
     }
     ngOnInit() {
         this.loadAll();
