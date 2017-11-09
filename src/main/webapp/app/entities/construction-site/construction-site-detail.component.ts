@@ -13,6 +13,7 @@ import { ConstructionSiteService } from './construction-site.service';
 export class ConstructionSiteDetailComponent implements OnInit, OnDestroy {
 
     constructionSite: ConstructionSite;
+    csiteId: number;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -25,6 +26,7 @@ export class ConstructionSiteDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.subscription = this.route.params.subscribe((params) => {
+            this.csiteId = params['id'];
             this.load(params['id']);
         });
         this.registerChangeInConstructionSites();

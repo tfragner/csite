@@ -14,6 +14,7 @@ import {
     constructionSiteRoute,
     constructionSitePopupRoute,
 } from './';
+import {CsiteWorkPackageModule} from '../work-package/work-package.module';
 
 const ENTITY_STATES = [
     ...constructionSiteRoute,
@@ -23,6 +24,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         CsiteSharedModule,
+        CsiteWorkPackageModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [
