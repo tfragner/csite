@@ -12,6 +12,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class WorkPackageService {
 
     private resourceUrl = SERVER_API_URL + 'api/work-packages';
+    private resourceUrlByConstructionSite = SERVER_API_URL + 'api/work-packages/construction_site';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
@@ -80,4 +81,10 @@ export class WorkPackageService {
         copy.endDate = this.dateUtils.toDate(workPackage.endDate);
         return copy;
     }
+
+    queryByConstructionSite(id: number): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUrlByConstructionSite}/${id}`)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
 }

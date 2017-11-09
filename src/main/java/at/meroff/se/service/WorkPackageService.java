@@ -79,4 +79,19 @@ public class WorkPackageService {
         log.debug("Request to delete WorkPackage : {}", id);
         workPackageRepository.delete(id);
     }
+
+    /**
+     *  Get all the workPackages by construction site id.
+     *
+     *  @param id the id of the construction site id
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<WorkPackageDTO> findAllByConstructionsite_Id(Long id) {
+        log.debug("Request to get all WorkPackages by construction site id: {}", id);
+        return workPackageRepository.findAllByConstructionsite_Id(id).stream()
+            .map(workPackageMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
 }
