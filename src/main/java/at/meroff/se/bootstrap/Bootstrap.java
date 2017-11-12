@@ -3,6 +3,7 @@ package at.meroff.se.bootstrap;
 import at.meroff.se.domain.Location;
 import at.meroff.se.domain.enumeration.LKWType;
 import at.meroff.se.domain.enumeration.PersonType;
+import at.meroff.se.domain.enumeration.WorkPackageStatus;
 import at.meroff.se.service.ConstructionSiteService;
 import at.meroff.se.service.LocationService;
 import at.meroff.se.service.PersonService;
@@ -59,10 +60,10 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         customer = personService.save(customer);
 
         PersonDTO supplier = new PersonDTO();
-        customer.setLastName("Fragner");
-        customer.setFirstName("Thomas");
-        customer.setType(PersonType.SUPPLIER);
-        supplier = personService.save(customer);
+        supplier.setLastName("Fragner");
+        supplier.setFirstName("Thomas");
+        supplier.setType(PersonType.SUPPLIER);
+        supplier = personService.save(supplier);
 
         // create construction site
         ConstructionSiteDTO site = new ConstructionSiteDTO();
@@ -88,6 +89,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
             LocalDate.parse("31.12.2017", dateFormat), LocalTime.parse("17:00", timeFormat)
         ), ZoneId.systemDefault()));
         p1.setName("JKU - TNF - Work Package 1");
+        p1.setStatus(WorkPackageStatus.OPEN);
         p1 = workPackageService.save(p1);
 
         WorkPackageDTO p2 = new WorkPackageDTO();
@@ -99,6 +101,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
             LocalDate.parse("31.01.2018", dateFormat), LocalTime.parse("17:00", timeFormat)
         ), ZoneId.systemDefault()));
         p2.setName("JKU - TNF - Work Package 2");
+        p2.setStatus(WorkPackageStatus.OPEN);
         p2 = workPackageService.save(p2);
 
         // create locations

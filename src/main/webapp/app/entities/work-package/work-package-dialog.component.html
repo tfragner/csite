@@ -31,6 +31,14 @@
                   />
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.workPackage.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="workPackage.status" id="field_status" >
+                <option value="PLANNED">{{'csiteApp.WorkPackageStatus.PLANNED' | translate}}</option>
+                <option value="OPEN">{{'csiteApp.WorkPackageStatus.OPEN' | translate}}</option>
+                <option value="FINISHED">{{'csiteApp.WorkPackageStatus.FINISHED' | translate}}</option>
+            </select>
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="csiteApp.workPackage.constructionsite" for="field_constructionsite">Constructionsite</label>

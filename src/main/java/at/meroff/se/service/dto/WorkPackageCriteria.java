@@ -1,6 +1,7 @@
 package at.meroff.se.service.dto;
 
 import java.io.Serializable;
+import at.meroff.se.domain.enumeration.WorkPackageStatus;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
 import io.github.jhipster.service.filter.Filter;
@@ -23,6 +24,12 @@ import io.github.jhipster.service.filter.ZonedDateTimeFilter;
  * fix type specific filters.
  */
 public class WorkPackageCriteria implements Serializable {
+    /**
+     * Class for filtering WorkPackageStatus
+     */
+    public static class WorkPackageStatusFilter extends Filter<WorkPackageStatus> {
+    }
+
     private static final long serialVersionUID = 1L;
 
 
@@ -33,6 +40,8 @@ public class WorkPackageCriteria implements Serializable {
     private ZonedDateTimeFilter startDate;
 
     private ZonedDateTimeFilter endDate;
+
+    private WorkPackageStatusFilter status;
 
     private LongFilter constructionsiteId;
 
@@ -71,6 +80,14 @@ public class WorkPackageCriteria implements Serializable {
         this.endDate = endDate;
     }
 
+    public WorkPackageStatusFilter getStatus() {
+        return status;
+    }
+
+    public void setStatus(WorkPackageStatusFilter status) {
+        this.status = status;
+    }
+
     public LongFilter getConstructionsiteId() {
         return constructionsiteId;
     }
@@ -86,6 +103,7 @@ public class WorkPackageCriteria implements Serializable {
                 (name != null ? "name=" + name + ", " : "") +
                 (startDate != null ? "startDate=" + startDate + ", " : "") +
                 (endDate != null ? "endDate=" + endDate + ", " : "") +
+                (status != null ? "status=" + status + ", " : "") +
                 (constructionsiteId != null ? "constructionsiteId=" + constructionsiteId + ", " : "") +
             "}";
     }

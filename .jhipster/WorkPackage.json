@@ -26,12 +26,17 @@
         {
             "fieldName": "endDate",
             "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "WorkPackageStatus",
+            "fieldValues": "PLANNED,OPEN,FINISHED"
         }
     ],
     "changelogDate": "20171105204543",
-    "entityTableName": "work_package",
     "dto": "mapstruct",
-    "pagination": "no",
     "service": "serviceClass",
-    "jpaMetamodelFiltering": true
+    "entityTableName": "work_package",
+    "jpaMetamodelFiltering": true,
+    "pagination": "no"
 }
