@@ -64,3 +64,6 @@
         </table>
     </div>
 </div>
+<agm-map [latitude]="48.03868" [longitude]="14.408922" [zoom]="20">
+    <agm-marker *ngFor="let location of locations" [latitude]="location.latitude" [longitude]="location.longitude"></agm-marker>
+</agm-map>

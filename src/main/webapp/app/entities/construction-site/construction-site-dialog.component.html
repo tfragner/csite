@@ -52,7 +52,7 @@
             <label class="form-control-label" jhiTranslate="csiteApp.constructionSite.customer" for="field_customer">Customer</label>
             <select class="form-control" id="field_customer" name="customer" [(ngModel)]="constructionSite.customerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.lastName}}</option>
+                <option [ngValue]="personOption.id" *ngFor="let personOption of customer; trackBy: trackPersonById">{{personOption.lastName}} {{personOption.firstName}}</option>
             </select>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -16,6 +16,8 @@ locations: Location[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
+    @Input() csiteId;
+
     constructor(
         private locationService: LocationService,
         private jhiAlertService: JhiAlertService,
@@ -25,12 +27,21 @@ locations: Location[];
     }
 
     loadAll() {
-        this.locationService.query().subscribe(
-            (res: ResponseWrapper) => {
-                this.locations = res.json;
-            },
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
+        if (this.csiteId) {
+            this.locationService.queryCsite(this.csiteId).subscribe(
+                (res: ResponseWrapper) => {
+                    this.locations = res.json;
+                },
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
+        } else {
+            this.locationService.query().subscribe(
+                (res: ResponseWrapper) => {
+                    this.locations = res.json;
+                },
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
+        }
     }
     ngOnInit() {
         this.loadAll();

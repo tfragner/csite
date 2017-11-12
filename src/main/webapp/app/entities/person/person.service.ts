@@ -42,6 +42,24 @@ export class PersonService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    queryPerson(req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
+        return this.http.get(this.resourceUrl + '?type.in=PERSON', options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    querySupplier(req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
+        return this.http.get(this.resourceUrl + '?type.in=SUPPLIER', options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    queryCustomer(req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
+        return this.http.get(this.resourceUrl + '?type.in=CUSTOMER', options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }

@@ -15,6 +15,8 @@ import {
     constructionSitePopupRoute,
 } from './';
 import {CsiteWorkPackageModule} from '../work-package/work-package.module';
+import {CsiteLocationModule} from '../location/location.module';
+import {CsiteDeliveryModule} from '../delivery/delivery.module';
 
 const ENTITY_STATES = [
     ...constructionSiteRoute,
@@ -25,6 +27,8 @@ const ENTITY_STATES = [
     imports: [
         CsiteSharedModule,
         CsiteWorkPackageModule,
+        CsiteLocationModule,
+        CsiteDeliveryModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [

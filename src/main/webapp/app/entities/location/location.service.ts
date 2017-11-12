@@ -42,6 +42,12 @@ export class LocationService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    queryCsite(csiteId: number, req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
+        return this.http.get(this.resourceUrl + '?constructionSiteId.equals=' + csiteId, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
