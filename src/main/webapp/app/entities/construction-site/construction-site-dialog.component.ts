@@ -22,6 +22,7 @@ export class ConstructionSiteDialogComponent implements OnInit {
     isSaving: boolean;
 
     people: Person[];
+    customer: Person[];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -34,8 +35,10 @@ export class ConstructionSiteDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.personService.query()
+        this.personService.queryPerson()
             .subscribe((res: ResponseWrapper) => { this.people = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.personService.queryCustomer()
+            .subscribe((res: ResponseWrapper) => { this.customer = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {

@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@agm/core@^1.0.0-beta.2":
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@agm/core/-/core-1.0.0-beta.2.tgz#da15c0a5e86fe9e1178f14c36a3e0ffc14f9ad77"
+
 "@angular-devkit/build-optimizer@~0.0.18":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-optimizer/-/build-optimizer-0.0.32.tgz#1bf32332d8a7c84043059e3d265a52f9d11726fd"
@@ -25,6 +29,12 @@
     "@ngtools/json-schema" "^1.1.0"
     minimist "^1.2.0"
     rxjs "^5.5.2"
+
+"@angular/animations@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.0.1.tgz#a92b2b186a6e5a31a9f1584911dd6aa7e16c5de1"
+  dependencies:
+    tslib "^1.7.1"
 
 "@angular/cli@1.4.2":
   version "1.4.2"
@@ -6268,6 +6278,10 @@ pretty-error@^2.0.2:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
+
+primeng@^5.0.0-rc.0:
+  version "5.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-5.0.0-rc.0.tgz#7dbe585e9a4ef387a63df4b2c91dd56de5e92552"
 
 private@^0.1.6, private@~0.1.5:
   version "0.1.8"

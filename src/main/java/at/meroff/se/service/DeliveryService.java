@@ -58,12 +58,25 @@ public class DeliveryService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
+    /**
+     *  Get all the deliveries.
+     *
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<DeliveryDTO> findAllByCsiteId(Long id) {
+        log.debug("Request to get all Deliveries");
+        return deliveryRepository.findAllByWorkpackage_Constructionsite_Id(id).stream()
+            .map(deliveryMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
 
     /**
      *  get all the deliveries where Checklist is null.
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<DeliveryDTO> findAllWhereChecklistIsNull() {
         log.debug("Request to get all deliveries where Checklist is null");
         return StreamSupport

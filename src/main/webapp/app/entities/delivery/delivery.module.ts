@@ -44,6 +44,9 @@ const ENTITY_STATES = [
         DeliveryService,
         DeliveryPopupService,
     ],
+    exports: [
+        DeliveryComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CsiteDeliveryModule {}

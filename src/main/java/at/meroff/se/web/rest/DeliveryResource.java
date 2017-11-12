@@ -97,6 +97,20 @@ public class DeliveryResource {
     }
 
     /**
+     * GET  /deliveries : get all the deliveries.
+     *
+     * @param id the criterias which the requested entities should match
+     * @return the ResponseEntity with status 200 (OK) and the list of deliveries in body
+     */
+    @GetMapping("/deliveries/byCsiteId/{id}")
+    @Timed
+    public ResponseEntity<List<DeliveryDTO>> getAllDeliveriesByCsiteId(@PathVariable Long id) {
+        log.debug("REST request to get Deliveries by csite id: {}", id);
+        List<DeliveryDTO> entityList = deliveryService.findAllByCsiteId(id);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
      * GET  /deliveries/:id : get the "id" delivery.
      *
      * @param id the id of the deliveryDTO to retrieve

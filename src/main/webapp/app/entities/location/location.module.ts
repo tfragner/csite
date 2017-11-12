@@ -2,6 +2,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CsiteSharedModule } from '../../shared';
+import { AgmCoreModule } from '@agm/core';
+
 import {
     LocationService,
     LocationPopupService,
@@ -23,6 +25,9 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         CsiteSharedModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyCvrWX1LiZavmtkRPg-Yv_q4xjQTVnNmpM'
+        }),
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [
@@ -43,6 +48,9 @@ const ENTITY_STATES = [
     providers: [
         LocationService,
         LocationPopupService,
+    ],
+    exports: [
+        LocationComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

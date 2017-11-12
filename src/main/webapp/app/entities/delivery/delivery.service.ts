@@ -44,6 +44,12 @@ export class DeliveryService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    queryByCsiteId(csiteId: number, req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
+        return this.http.get(`${this.resourceUrl}/byCsiteId/${csiteId}`, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }

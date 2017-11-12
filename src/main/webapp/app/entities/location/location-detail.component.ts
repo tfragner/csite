@@ -8,6 +8,11 @@ import { LocationService } from './location.service';
 
 @Component({
     selector: 'jhi-location-detail',
+    styles: [`
+    agm-map {
+      height: 300px;
+    }
+  `],
     templateUrl: './location-detail.component.html'
 })
 export class LocationDetailComponent implements OnInit, OnDestroy {
@@ -15,6 +20,8 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
     location: Location;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
+    lat: number;
+    lng: number;
 
     constructor(
         private eventManager: JhiEventManager,
@@ -33,8 +40,11 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.locationService.find(id).subscribe((location) => {
             this.location = location;
+            this.lat = location.latitude;
+            this.lng = location.longitude;
         });
     }
+
     previousState() {
         window.history.back();
     }
@@ -50,4 +60,5 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
             (response) => this.load(this.location.id)
         );
     }
+
 }
