@@ -9,11 +9,14 @@ import {
     WorkPackageDetailComponent,
     WorkPackageDialogComponent,
     WorkPackagePopupComponent,
+    WorkPackageWithCsitePopupComponent,
     WorkPackageDeletePopupComponent,
     WorkPackageDeleteDialogComponent,
     workPackageRoute,
     workPackagePopupRoute,
 } from './';
+import {CalendarModule, DataTableModule} from 'primeng/primeng';
+import {SharedModule} from 'primeng/components/common/shared';
 
 const ENTITY_STATES = [
     ...workPackageRoute,
@@ -23,6 +26,9 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         CsiteSharedModule,
+        DataTableModule,
+        SharedModule,
+        CalendarModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [
@@ -31,12 +37,14 @@ const ENTITY_STATES = [
         WorkPackageDialogComponent,
         WorkPackageDeleteDialogComponent,
         WorkPackagePopupComponent,
+        WorkPackageWithCsitePopupComponent,
         WorkPackageDeletePopupComponent,
     ],
     entryComponents: [
         WorkPackageComponent,
         WorkPackageDialogComponent,
         WorkPackagePopupComponent,
+        WorkPackageWithCsitePopupComponent,
         WorkPackageDeleteDialogComponent,
         WorkPackageDeletePopupComponent,
     ],

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager } from 'ng-jhipster';
@@ -15,6 +15,8 @@ export class WorkPackageDetailComponent implements OnInit, OnDestroy {
     workPackage: WorkPackage;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
+
+    @Input() csiteId: number;
 
     constructor(
         private eventManager: JhiEventManager,

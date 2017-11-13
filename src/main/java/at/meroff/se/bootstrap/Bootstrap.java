@@ -4,14 +4,8 @@ import at.meroff.se.domain.Location;
 import at.meroff.se.domain.enumeration.LKWType;
 import at.meroff.se.domain.enumeration.PersonType;
 import at.meroff.se.domain.enumeration.WorkPackageStatus;
-import at.meroff.se.service.ConstructionSiteService;
-import at.meroff.se.service.LocationService;
-import at.meroff.se.service.PersonService;
-import at.meroff.se.service.WorkPackageService;
-import at.meroff.se.service.dto.ConstructionSiteDTO;
-import at.meroff.se.service.dto.LocationDTO;
-import at.meroff.se.service.dto.PersonDTO;
-import at.meroff.se.service.dto.WorkPackageDTO;
+import at.meroff.se.service.*;
+import at.meroff.se.service.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
@@ -30,16 +24,19 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private final ConstructionSiteService constructionSiteService;
     private final WorkPackageService workPackageService;
     private final LocationService locationService;
+    private final DeliveryService deliveryService;
 
 
     public Bootstrap(PersonService personService,
                      ConstructionSiteService constructionSiteService,
                      WorkPackageService workPackageService,
-                     LocationService locationService) {
+                     LocationService locationService,
+                     DeliveryService deliveryService) {
         this.personService = personService;
         this.constructionSiteService = constructionSiteService;
         this.workPackageService = workPackageService;
         this.locationService = locationService;
+        this.deliveryService = deliveryService;
 
     }
 
@@ -66,22 +63,32 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         supplier = personService.save(supplier);
 
         // create construction site
-        ConstructionSiteDTO site = new ConstructionSiteDTO();
-        site.setPrjNumber(1);
-        site.setPrjName("JKU - TNF");
-        site.setKran(true);
-        site.setStapler(true);
-        site.setMaxLKWType(LKWType.T400);
-        site.setContainerId(manInTheContainer.getId());
-        site.setCustomerId(customer.getId());
-        site = constructionSiteService.save(site);
+        ConstructionSiteDTO site1 = new ConstructionSiteDTO();
+        site1.setPrjNumber(1);
+        site1.setPrjName("JKU - TNF");
+        site1.setKran(true);
+        site1.setStapler(true);
+        site1.setMaxLKWType(LKWType.T400);
+        site1.setContainerId(manInTheContainer.getId());
+        site1.setCustomerId(customer.getId());
+        site1 = constructionSiteService.save(site1);
+
+        ConstructionSiteDTO site2 = new ConstructionSiteDTO();
+        site2.setPrjNumber(2);
+        site2.setPrjName("JKU - Science Park 4");
+        site2.setKran(true);
+        site2.setStapler(false);
+        site2.setMaxLKWType(LKWType.T70);
+        site2.setContainerId(manInTheContainer.getId());
+        site2.setCustomerId(customer.getId());
+        site2 = constructionSiteService.save(site2);
 
         // create work packages
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
 
         WorkPackageDTO p1 = new WorkPackageDTO();
-        p1.setConstructionsiteId(site.getId());
+        p1.setConstructionsiteId(site1.getId());
         p1.setStartDate(ZonedDateTime.of(LocalDateTime.of(
             LocalDate.parse("30.11.2017", dateFormat), LocalTime.parse("08:00", timeFormat)
         ), ZoneId.systemDefault()));
@@ -93,7 +100,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         p1 = workPackageService.save(p1);
 
         WorkPackageDTO p2 = new WorkPackageDTO();
-        p2.setConstructionsiteId(site.getId());
+        p2.setConstructionsiteId(site1.getId());
         p2.setStartDate(ZonedDateTime.of(LocalDateTime.of(
             LocalDate.parse("12.12.2017", dateFormat), LocalTime.parse("08:00", timeFormat)
         ), ZoneId.systemDefault()));
@@ -104,21 +111,70 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         p2.setStatus(WorkPackageStatus.OPEN);
         p2 = workPackageService.save(p2);
 
+        WorkPackageDTO p3 = new WorkPackageDTO();
+        p3.setConstructionsiteId(site2.getId());
+        p3.setStartDate(ZonedDateTime.of(LocalDateTime.of(
+            LocalDate.parse("30.11.2017", dateFormat), LocalTime.parse("08:00", timeFormat)
+        ), ZoneId.systemDefault()));
+        p3.setEndDate(ZonedDateTime.of(LocalDateTime.of(
+            LocalDate.parse("31.12.2017", dateFormat), LocalTime.parse("17:00", timeFormat)
+        ), ZoneId.systemDefault()));
+        p3.setName("JKU - Science Park - Work Package 1");
+        p3.setStatus(WorkPackageStatus.OPEN);
+        p3 = workPackageService.save(p3);
+
+        WorkPackageDTO p4 = new WorkPackageDTO();
+        p4.setConstructionsiteId(site2.getId());
+        p4.setStartDate(ZonedDateTime.of(LocalDateTime.of(
+            LocalDate.parse("12.12.2017", dateFormat), LocalTime.parse("08:00", timeFormat)
+        ), ZoneId.systemDefault()));
+        p4.setEndDate(ZonedDateTime.of(LocalDateTime.of(
+            LocalDate.parse("31.01.2018", dateFormat), LocalTime.parse("17:00", timeFormat)
+        ), ZoneId.systemDefault()));
+        p4.setName("JKU - Science Park - Work Package 2");
+        p4.setStatus(WorkPackageStatus.OPEN);
+        p4 = workPackageService.save(p4);
+
         // create locations
         LocationDTO l1 = new LocationDTO();
-        l1.setConstructionSiteId(site.getId());
+        l1.setConstructionSiteId(site1.getId());
         l1.setLongitude(14.408922F);
         l1.setLatitude(48.038681F);
         l1.setName("Hauptentladeplatz");
         locationService.save(l1);
 
         LocationDTO l2 = new LocationDTO();
-        l2.setConstructionSiteId(site.getId());
+        l2.setConstructionSiteId(site1.getId());
         l2.setLongitude(14.428922F);
         l2.setLatitude(48.068681F);
         l2.setName("Nebenentladeplatz");
         locationService.save(l2);
 
+        LocationDTO l3 = new LocationDTO();
+        l3.setConstructionSiteId(site2.getId());
+        l3.setLongitude(14.408922F);
+        l3.setLatitude(48.038681F);
+        l3.setName("Hauptentladeplatz");
+        locationService.save(l3);
+
+        LocationDTO l4 = new LocationDTO();
+        l4.setConstructionSiteId(site2.getId());
+        l4.setLongitude(14.428922F);
+        l4.setLatitude(48.068681F);
+        l4.setName("Nebenentladeplatz");
+        locationService.save(l4);
+
+        // Deliveries
+        DeliveryDTO d1 = new DeliveryDTO();
+        d1.setOrderNumber("123");
+        d1.setKalenderwoche(52);
+        d1.setDate(ZonedDateTime.of(LocalDateTime.of(
+            LocalDate.parse("12.12.2017", dateFormat), LocalTime.parse("08:00", timeFormat)
+        ), ZoneId.systemDefault()));
+        d1.setLkwType(LKWType.T70);
+        d1.setWorkpackageId(p1.getId());
+        d1.setLocationId(l1.getId());
+        d1 = deliveryService.save(d1);
 
 
 

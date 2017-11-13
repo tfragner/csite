@@ -45,6 +45,33 @@ export class WorkPackagePopupService {
         });
     }
 
+    openWithCsiteId(component: Component, csiteId?: number | any): Promise<NgbModalRef> {
+        return new Promise<NgbModalRef>((resolve, reject) => {
+            const isOpen = this.ngbModalRef !== null;
+            if (isOpen) {
+                resolve(this.ngbModalRef);
+            }
+
+            if (csiteId) {
+                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
+                setTimeout(() => {
+                    const temp = new WorkPackage();
+                    temp.constructionsiteId = csiteId;
+
+                    this.ngbModalRef = this.workPackageModalRef(component, temp);
+                    resolve(this.ngbModalRef);
+                    console.log('id gefunden');
+                }, 0);
+            } else {
+                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
+                setTimeout(() => {
+                    this.ngbModalRef = this.workPackageModalRef(component, new WorkPackage());
+                    resolve(this.ngbModalRef);
+                }, 0);
+            }
+        });
+    }
+
     workPackageModalRef(component: Component, workPackage: WorkPackage): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.workPackage = workPackage;

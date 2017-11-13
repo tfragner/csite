@@ -13,7 +13,7 @@
                 "question": "Soll Construction Site {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
-                "title": "Construction Site"
+                "title": "Baustelle"
             },
             "prjNumber": "Prj Number",
             "prjName": "Prj Name",
