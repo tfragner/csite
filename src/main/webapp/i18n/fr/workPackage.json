@@ -18,6 +18,7 @@
             "name": "Name",
             "startDate": "Start Date",
             "endDate": "End Date",
+            "status": "Status",
             "delivery": "Delivery",
             "constructionsite": "Constructionsite"
         }

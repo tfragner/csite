@@ -38,6 +38,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import at.meroff.se.domain.enumeration.WorkPackageStatus;
 /**
  * Test class for the WorkPackageResource REST controller.
  *
@@ -55,6 +56,9 @@ public class WorkPackageResourceIntTest {
 
     private static final ZonedDateTime DEFAULT_END_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_END_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final WorkPackageStatus DEFAULT_STATUS = WorkPackageStatus.PLANNED;
+    private static final WorkPackageStatus UPDATED_STATUS = WorkPackageStatus.OPEN;
 
     @Autowired
     private WorkPackageRepository workPackageRepository;
@@ -104,7 +108,8 @@ public class WorkPackageResourceIntTest {
         WorkPackage workPackage = new WorkPackage()
             .name(DEFAULT_NAME)
             .startDate(DEFAULT_START_DATE)
-            .endDate(DEFAULT_END_DATE);
+            .endDate(DEFAULT_END_DATE)
+            .status(DEFAULT_STATUS);
         return workPackage;
     }
 
@@ -132,6 +137,7 @@ public class WorkPackageResourceIntTest {
         assertThat(testWorkPackage.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testWorkPackage.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testWorkPackage.getEndDate()).isEqualTo(DEFAULT_END_DATE);
+        assertThat(testWorkPackage.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -167,7 +173,8 @@ public class WorkPackageResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(workPackage.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(sameInstant(DEFAULT_START_DATE))))
-            .andExpect(jsonPath("$.[*].endDate").value(hasItem(sameInstant(DEFAULT_END_DATE))));
+            .andExpect(jsonPath("$.[*].endDate").value(hasItem(sameInstant(DEFAULT_END_DATE))))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test
@@ -183,7 +190,8 @@ public class WorkPackageResourceIntTest {
             .andExpect(jsonPath("$.id").value(workPackage.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.startDate").value(sameInstant(DEFAULT_START_DATE)))
-            .andExpect(jsonPath("$.endDate").value(sameInstant(DEFAULT_END_DATE)));
+            .andExpect(jsonPath("$.endDate").value(sameInstant(DEFAULT_END_DATE)))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -357,6 +365,45 @@ public class WorkPackageResourceIntTest {
     }
 
 
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByStatusIsEqualToSomething() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where status equals to DEFAULT_STATUS
+        defaultWorkPackageShouldBeFound("status.equals=" + DEFAULT_STATUS);
+
+        // Get all the workPackageList where status equals to UPDATED_STATUS
+        defaultWorkPackageShouldNotBeFound("status.equals=" + UPDATED_STATUS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByStatusIsInShouldWork() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where status in DEFAULT_STATUS or UPDATED_STATUS
+        defaultWorkPackageShouldBeFound("status.in=" + DEFAULT_STATUS + "," + UPDATED_STATUS);
+
+        // Get all the workPackageList where status equals to UPDATED_STATUS
+        defaultWorkPackageShouldNotBeFound("status.in=" + UPDATED_STATUS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByStatusIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where status is not null
+        defaultWorkPackageShouldBeFound("status.specified=true");
+
+        // Get all the workPackageList where status is null
+        defaultWorkPackageShouldNotBeFound("status.specified=false");
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -367,7 +414,8 @@ public class WorkPackageResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(workPackage.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(sameInstant(DEFAULT_START_DATE))))
-            .andExpect(jsonPath("$.[*].endDate").value(hasItem(sameInstant(DEFAULT_END_DATE))));
+            .andExpect(jsonPath("$.[*].endDate").value(hasItem(sameInstant(DEFAULT_END_DATE))))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     /**
@@ -402,7 +450,8 @@ public class WorkPackageResourceIntTest {
         updatedWorkPackage
             .name(UPDATED_NAME)
             .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE);
+            .endDate(UPDATED_END_DATE)
+            .status(UPDATED_STATUS);
         WorkPackageDTO workPackageDTO = workPackageMapper.toDto(updatedWorkPackage);
 
         restWorkPackageMockMvc.perform(put("/api/work-packages")
@@ -417,6 +466,7 @@ public class WorkPackageResourceIntTest {
         assertThat(testWorkPackage.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testWorkPackage.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testWorkPackage.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testWorkPackage.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

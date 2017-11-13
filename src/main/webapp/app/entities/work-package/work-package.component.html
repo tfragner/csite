@@ -1,7 +1,13 @@
 <div>
     <h2>
         <span jhiTranslate="csiteApp.workPackage.home.title">Work Packages</span>
-        <button class="btn btn-primary float-right jh-create-entity create-work-package" [routerLink]="['/', { outlets: { popup: ['work-package-new'] } }]">
+        <button *ngIf="csiteId" class="btn btn-primary float-right jh-create-entity create-work-package" [routerLink]="['/', { outlets: { popup: ['work-package-new', csiteId] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="csiteApp.workPackage.home.createLabel">
+            Create new Work Package
+            </span>
+        </button>
+        <button *ngIf="csiteId==null" class="btn btn-primary float-right jh-create-entity create-work-package" [routerLink]="['/', { outlets: { popup: ['work-package-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="csiteApp.workPackage.home.createLabel">
             Create new Work Package
@@ -20,6 +26,7 @@
             <th><span jhiTranslate="csiteApp.workPackage.name">Name</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.startDate">Start Date</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.endDate">End Date</span></th>
+            <th><span jhiTranslate="csiteApp.workPackage.status">Status</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.constructionsite">Constructionsite</span></th>
             <th></th>
             </tr>
@@ -30,6 +37,7 @@
                 <td>{{workPackage.name}}</td>
                 <td>{{workPackage.startDate | date:'medium'}}</td>
                 <td>{{workPackage.endDate | date:'medium'}}</td>
+                <td jhiTranslate="{{'csiteApp.WorkPackageStatus.' + workPackage.status}}">{{workPackage.status}}</td>
                 <td>
                     <div *ngIf="workPackage.constructionsiteId">
                         <a [routerLink]="['../construction-site', workPackage.constructionsiteId  ]" >{{workPackage.constructionsitePrjName}}</a>
@@ -38,7 +46,7 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../work-package', workPackage.id ]"
+                                [routerLink]="['/work-package', workPackage.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
@@ -64,3 +72,10 @@
         </table>
     </div>
 </div>
+<!--<p-dataTable [value]="workPackages">
+    <p-column field="name" header="Name"></p-column>
+    <p-column field="startDate" header="Start"></p-column>
+    <p-column field="endDate" header="Ende"></p-column>
+    <p-column field="status" header="Status" [filter]="true"></p-column>
+    <p-column field="constructionsitePrjName" header="Baustelle"></p-column>
+</p-dataTable>-->

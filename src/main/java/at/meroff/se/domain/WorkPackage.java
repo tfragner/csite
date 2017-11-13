@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import at.meroff.se.domain.enumeration.WorkPackageStatus;
+
 /**
  * A WorkPackage.
  */
@@ -33,6 +35,10 @@ public class WorkPackage implements Serializable {
 
     @Column(name = "end_date")
     private ZonedDateTime endDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private WorkPackageStatus status;
 
     @OneToMany(mappedBy = "workpackage")
     @JsonIgnore
@@ -88,6 +94,19 @@ public class WorkPackage implements Serializable {
 
     public void setEndDate(ZonedDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public WorkPackageStatus getStatus() {
+        return status;
+    }
+
+    public WorkPackage status(WorkPackageStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(WorkPackageStatus status) {
+        this.status = status;
     }
 
     public Set<Delivery> getDeliveries() {
@@ -156,6 +175,7 @@ public class WorkPackage implements Serializable {
             ", name='" + getName() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

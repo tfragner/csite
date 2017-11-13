@@ -6,7 +6,7 @@ import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { WorkPackageComponent } from './work-package.component';
 import { WorkPackageDetailComponent } from './work-package-detail.component';
-import { WorkPackagePopupComponent } from './work-package-dialog.component';
+import {WorkPackagePopupComponent, WorkPackageWithCsitePopupComponent} from './work-package-dialog.component';
 import { WorkPackageDeletePopupComponent } from './work-package-delete-dialog.component';
 
 export const workPackageRoute: Routes = [
@@ -33,6 +33,16 @@ export const workPackagePopupRoute: Routes = [
     {
         path: 'work-package-new',
         component: WorkPackagePopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'csiteApp.workPackage.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'work-package-new/:csiteId',
+        component: WorkPackageWithCsitePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'csiteApp.workPackage.home.title'

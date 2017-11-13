@@ -1,5 +1,4 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-
     <div class="modal-header">
         <h4 class="modal-title" id="myWorkPackageLabel" jhiTranslate="csiteApp.workPackage.home.createOrEditLabel">Create or edit a Work Package</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -31,8 +30,15 @@
                   />
             </div>
         </div>
-
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="csiteApp.workPackage.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="workPackage.status" id="field_status" >
+                <option value="PLANNED">{{'csiteApp.WorkPackageStatus.PLANNED' | translate}}</option>
+                <option value="OPEN">{{'csiteApp.WorkPackageStatus.OPEN' | translate}}</option>
+                <option value="FINISHED">{{'csiteApp.WorkPackageStatus.FINISHED' | translate}}</option>
+            </select>
+        </div>
+        <div *ngIf="(workPackage.id == null && workPackage.constructionsiteId == null) || workPackage.id" class="form-group">
             <label class="form-control-label" jhiTranslate="csiteApp.workPackage.constructionsite" for="field_constructionsite">Constructionsite</label>
             <select class="form-control" id="field_constructionsite" name="constructionsite" [(ngModel)]="workPackage.constructionsiteId" >
                 <option [ngValue]="null"></option>

@@ -21,6 +21,7 @@ import at.meroff.se.service.dto.WorkPackageCriteria;
 
 import at.meroff.se.service.dto.WorkPackageDTO;
 import at.meroff.se.service.mapper.WorkPackageMapper;
+import at.meroff.se.domain.enumeration.WorkPackageStatus;
 
 /**
  * Service for executing complex queries for WorkPackage entities in the database.
@@ -87,6 +88,9 @@ public class WorkPackageQueryService extends QueryService<WorkPackage> {
             }
             if (criteria.getEndDate() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getEndDate(), WorkPackage_.endDate));
+            }
+            if (criteria.getStatus() != null) {
+                specification = specification.and(buildSpecification(criteria.getStatus(), WorkPackage_.status));
             }
             if (criteria.getConstructionsiteId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getConstructionsiteId(), WorkPackage_.constructionsite, ConstructionSite_.id));

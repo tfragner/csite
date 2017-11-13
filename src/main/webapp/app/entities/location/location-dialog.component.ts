@@ -53,6 +53,20 @@ export class LocationDialogComponent implements OnInit {
         }
     }
 
+    updatePosition() {
+        // navigator.geolocation.getCurrentPosition(this.setPosition);
+        this.location.longitude = this.location.longitude + 1;
+        this.location.latitude = this.location.latitude + 1;
+    }
+
+    // geht nicht weil nur über https
+    setPosition(position) {
+        this.location.longitude = position.longitude + 1;
+        this.location.latitude = position.latitude + 1;
+
+        console.log(position.coords);
+    }
+
     private subscribeToSaveResponse(result: Observable<Location>) {
         result.subscribe((res: Location) =>
             this.onSaveSuccess(res), (res: Response) => this.onSaveError());

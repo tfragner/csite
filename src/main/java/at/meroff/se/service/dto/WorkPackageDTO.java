@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import at.meroff.se.domain.enumeration.WorkPackageStatus;
 
 /**
  * A DTO for the WorkPackage entity.
@@ -19,6 +20,8 @@ public class WorkPackageDTO implements Serializable {
     private ZonedDateTime startDate;
 
     private ZonedDateTime endDate;
+
+    private WorkPackageStatus status;
 
     private Long constructionsiteId;
 
@@ -54,6 +57,14 @@ public class WorkPackageDTO implements Serializable {
 
     public void setEndDate(ZonedDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public WorkPackageStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(WorkPackageStatus status) {
+        this.status = status;
     }
 
     public Long getConstructionsiteId() {
@@ -100,6 +111,7 @@ public class WorkPackageDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

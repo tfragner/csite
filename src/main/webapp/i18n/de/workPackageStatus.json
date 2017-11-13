@@ -1,0 +1,10 @@
+{
+    "csiteApp": {
+        "WorkPackageStatus" : {
+            "null": "",
+            "PLANNED": "PLANNED",
+            "OPEN": "OPEN",
+            "FINISHED": "FINISHED"
+        }
+    }
+}

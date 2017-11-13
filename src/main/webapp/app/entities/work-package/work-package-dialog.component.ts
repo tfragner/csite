@@ -33,6 +33,7 @@ export class WorkPackageDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('asdf');
         this.isSaving = false;
         this.constructionSiteService.query()
             .subscribe((res: ResponseWrapper) => { this.constructionsites = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
@@ -98,6 +99,38 @@ export class WorkPackagePopupComponent implements OnInit, OnDestroy {
             } else {
                 this.workPackagePopupService
                     .open(WorkPackageDialogComponent as Component);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}
+
+@Component({
+    selector: 'jhi-work-package-csite-popup',
+    template: ''
+})
+export class WorkPackageWithCsitePopupComponent implements OnInit, OnDestroy {
+
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private workPackagePopupService: WorkPackagePopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['csiteId'] ) {
+                console.log('id gefunden');
+                this.workPackagePopupService
+                    .openWithCsiteId(WorkPackageDialogComponent as Component, params['csiteId']);
+            } else {
+                console.log('id nicht gefunden');
+                this.workPackagePopupService
+                    .openWithCsiteId(WorkPackageDialogComponent as Component);
             }
         });
     }
