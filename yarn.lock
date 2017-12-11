@@ -192,6 +192,10 @@
   dependencies:
     "@angular-devkit/core" "0.0.20"
 
+"@types/dhtmlxgantt@^4.0.34":
+  version "4.0.34"
+  resolved "https://registry.yarnpkg.com/@types/dhtmlxgantt/-/dhtmlxgantt-4.0.34.tgz#2e8093d0052183062e595d29542452d9699e7dde"
+
 "@types/jasmine@2.5.53":
   version "2.5.53"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.53.tgz#4e0cefad09df5ec48c8dd40433512f84b1568d61"
@@ -1993,6 +1997,10 @@ detective@^4.3.1:
 dev-ip@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/dev-ip/-/dev-ip-1.0.1.tgz#a76a3ed1855be7a012bb8ac16cb80f3c00dc28f0"
+
+dhtmlx-gantt@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/dhtmlx-gantt/-/dhtmlx-gantt-4.2.1.tgz#417a93dfc33cc362df1bb2a116481c29c2fea63c"
 
 di@^0.0.1:
   version "0.0.1"
