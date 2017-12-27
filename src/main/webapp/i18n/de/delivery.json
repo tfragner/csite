@@ -15,8 +15,8 @@
             "detail": {
                 "title": "Delivery"
             },
-            "orderNumber": "Order Number",
-            "kalenderwoche": "Kalenderwoche",
+            "orderNumber": "Nr.",
+            "kalenderwoche": "KW",
             "date": "Date",
             "unloading": "Unloading",
             "avisoType": "Aviso Type",

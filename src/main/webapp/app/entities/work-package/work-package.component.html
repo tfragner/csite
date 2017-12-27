@@ -1,4 +1,3 @@
-<jhi-gantt-diagram [csiteid]="csiteId"></jhi-gantt-diagram>
 <hr>
 <div>
     <h2>
@@ -24,31 +23,31 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="csiteApp.workPackage.name">Name</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.startDate">Start Date</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.endDate">End Date</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.status">Status</span></th>
-            <th><span jhiTranslate="csiteApp.workPackage.duration">Duration</span></th>
-            <th><span jhiTranslate="csiteApp.workPackage.progress">Progress</span></th>
-            <th><span jhiTranslate="csiteApp.workPackage.constructionsite">Constructionsite</span></th>
+            <!--<th><span jhiTranslate="csiteApp.workPackage.duration">Duration</span></th>-->
+            <!--<th><span jhiTranslate="csiteApp.workPackage.progress">Progress</span></th>-->
+            <!--<th><span jhiTranslate="csiteApp.workPackage.constructionsite">Constructionsite</span></th>-->
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let workPackage of workPackages ;trackBy: trackId">
-                <td><a [routerLink]="['../work-package', workPackage.id ]">{{workPackage.id}}</a></td>
-                <td>{{workPackage.name}}</td>
-                <td>{{workPackage.startDate | date:'medium'}}</td>
-                <td>{{workPackage.endDate | date:'medium'}}</td>
+                <!--<td><a [routerLink]="['../work-package', workPackage.id ]">{{workPackage.id}}</a></td>-->
+                <td><a [routerLink]="['../work-package', workPackage.id ]">{{workPackage.name}}</a></td>
+                <td>{{workPackage.startDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{workPackage.endDate | date:'yyyy-MM-dd'}}</td>
                 <td jhiTranslate="{{'csiteApp.WorkPackageStatus.' + workPackage.status}}">{{workPackage.status}}</td>
-                <td>{{workPackage.duration}}</td>
-                <td>{{workPackage.progress}}</td>
-                <td>
+                <!-- <td>{{workPackage.duration}}</td> -->
+                <!-- <td>{{workPackage.progress}}</td> -->
+                <!-- <td>
                     <div *ngIf="workPackage.constructionsiteId">
                         <a [routerLink]="['../construction-site', workPackage.constructionsiteId  ]" >{{workPackage.constructionsitePrjName}}</a>
                     </div>
-                </td>
+                </td> -->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -77,6 +76,7 @@
             </tbody>
         </table>
     </div>
+    <jhi-gantt-diagram [csiteid]="csiteId"></jhi-gantt-diagram>
 </div>
 <!--<p-dataTable [value]="workPackages">
     <p-column field="name" header="Name"></p-column>

@@ -16,15 +16,15 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="csiteApp.delivery.orderNumber">Order Number</span></th>
             <th><span jhiTranslate="csiteApp.delivery.kalenderwoche">Kalenderwoche</span></th>
             <th><span jhiTranslate="csiteApp.delivery.date">Date</span></th>
-            <th><span jhiTranslate="csiteApp.delivery.unloading">Unloading</span></th>
-            <th><span jhiTranslate="csiteApp.delivery.avisoType">Aviso Type</span></th>
+            <!--<th><span jhiTranslate="csiteApp.delivery.unloading">Unloading</span></th>
+            <th><span jhiTranslate="csiteApp.delivery.avisoType">Aviso Type</span></th>-->
             <th><span jhiTranslate="csiteApp.delivery.status">Status</span></th>
-            <th><span jhiTranslate="csiteApp.delivery.image">Image</span></th>
-            <th><span jhiTranslate="csiteApp.delivery.lkwType">Lkw Type</span></th>
+            <!--<th><span jhiTranslate="csiteApp.delivery.image">Image</span></th>
+            <th><span jhiTranslate="csiteApp.delivery.lkwType">Lkw Type</span></th>-->
             <th><span jhiTranslate="csiteApp.delivery.workpackage">Workpackage</span></th>
             <th><span jhiTranslate="csiteApp.delivery.person">Person</span></th>
             <th><span jhiTranslate="csiteApp.delivery.location">Location</span></th>
@@ -33,20 +33,20 @@
             </thead>
             <tbody>
             <tr *ngFor="let delivery of deliveries ;trackBy: trackId">
-                <td><a [routerLink]="['../delivery', delivery.id ]">{{delivery.id}}</a></td>
-                <td>{{delivery.orderNumber}}</td>
+                <!--<td>{{delivery.id}}</a></td>-->
+                <td><a [routerLink]="['../delivery', delivery.id ]">{{delivery.orderNumber}}</a></td>
                 <td>{{delivery.kalenderwoche}}</td>
-                <td>{{delivery.date | date:'medium'}}</td>
-                <td jhiTranslate="{{'csiteApp.UnloadingType.' + delivery.unloading}}">{{delivery.unloading}}</td>
-                <td jhiTranslate="{{'csiteApp.AvisoType.' + delivery.avisoType}}">{{delivery.avisoType}}</td>
+                <td>{{delivery.date | date:'yyyy-MM-dd'}}</td>
+                <!--<td jhiTranslate="{{'csiteApp.UnloadingType.' + delivery.unloading}}">{{delivery.unloading}}</td>
+                <td jhiTranslate="{{'csiteApp.AvisoType.' + delivery.avisoType}}">{{delivery.avisoType}}</td>-->
                 <td jhiTranslate="{{'csiteApp.DeliveryStatus.' + delivery.status}}">{{delivery.status}}</td>
-                <td>
+                <!-- <td>
                     <a *ngIf="delivery.image" (click)="openFile(delivery.imageContentType, delivery.image)">
                         <img [src]="'data:' + delivery.imageContentType + ';base64,' + delivery.image" style="max-height: 30px;" alt="delivery image"/>
                     </a>
                     <span *ngIf="delivery.image">{{delivery.imageContentType}}, {{byteSize(delivery.image)}}</span>
-                </td>
-                <td jhiTranslate="{{'csiteApp.LKWType.' + delivery.lkwType}}">{{delivery.lkwType}}</td>
+                </td> -->
+                <!--<td jhiTranslate="{{'csiteApp.LKWType.' + delivery.lkwType}}">{{delivery.lkwType}}</td>-->
                 <td>
                     <div *ngIf="delivery.workpackageId">
                         <a [routerLink]="['../work-package', delivery.workpackageId  ]" >{{delivery.workpackageName}}</a>
