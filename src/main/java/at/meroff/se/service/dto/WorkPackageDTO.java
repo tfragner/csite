@@ -3,6 +3,7 @@ package at.meroff.se.service.dto;
 
 import java.time.ZonedDateTime;
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -23,9 +24,17 @@ public class WorkPackageDTO implements Serializable {
 
     private WorkPackageStatus status;
 
+    private Integer duration;
+
+    private Double progress;
+
     private Long constructionsiteId;
 
     private String constructionsitePrjName;
+
+    private ZonedDateTime start_date;
+
+    private String text;
 
     public Long getId() {
         return id;
@@ -67,6 +76,22 @@ public class WorkPackageDTO implements Serializable {
         this.status = status;
     }
 
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Double getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Double progress) {
+        this.progress = progress;
+    }
+
     public Long getConstructionsiteId() {
         return constructionsiteId;
     }
@@ -81,6 +106,24 @@ public class WorkPackageDTO implements Serializable {
 
     public void setConstructionsitePrjName(String constructionSitePrjName) {
         this.constructionsitePrjName = constructionSitePrjName;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getStart_date() {
+        //2017-04-15 00:00
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+        return startDate.format(format);
+    }
+
+    public void setStart_date(String start_date) {
+        return;
     }
 
     @Override
@@ -112,6 +155,8 @@ public class WorkPackageDTO implements Serializable {
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", duration='" + getDuration() + "'" +
+            ", progress='" + getProgress() + "'" +
             "}";
     }
 }

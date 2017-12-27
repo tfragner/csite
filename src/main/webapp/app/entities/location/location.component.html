@@ -16,25 +16,25 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="csiteApp.location.name">Name</span></th>
-            <th><span jhiTranslate="csiteApp.location.longitude">Longitude</span></th>
-            <th><span jhiTranslate="csiteApp.location.latitude">Latitude</span></th>
-            <th><span jhiTranslate="csiteApp.location.constructionSite">Construction Site</span></th>
+            <!--<th><span jhiTranslate="csiteApp.location.longitude">Longitude</span></th>
+            <th><span jhiTranslate="csiteApp.location.latitude">Latitude</span></th>-->
+            <!--<th><span jhiTranslate="csiteApp.location.constructionSite">Construction Site</span></th>-->
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let location of locations ;trackBy: trackId">
-                <td><a [routerLink]="['../location', location.id ]">{{location.id}}</a></td>
-                <td>{{location.name}}</td>
-                <td>{{location.longitude}}</td>
-                <td>{{location.latitude}}</td>
-                <td>
+                <!--<td><a [routerLink]="['../location', location.id ]">{{location.id}}</a></td>-->
+                <td><a [routerLink]="['../location', location.id ]">{{location.name}}</a></td>
+                <!--<td>{{location.longitude}}</td>
+                <td>{{location.latitude}}</td>-->
+                <!--<td>
                     <div *ngIf="location.constructionSiteId">
                         <a [routerLink]="['../construction-site', location.constructionSiteId  ]" >{{location.constructionSitePrjName}}</a>
                     </div>
-                </td>
+                </td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

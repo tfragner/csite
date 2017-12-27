@@ -20,6 +20,14 @@
         <dd>
             <span jhiTranslate="{{'csiteApp.WorkPackageStatus.' + workPackage.status}}">{{workPackage.status}}</span>
         </dd>
+        <dt><span jhiTranslate="csiteApp.workPackage.duration">Duration</span></dt>
+        <dd>
+            <span>{{workPackage.duration}}</span>
+        </dd>
+        <dt><span jhiTranslate="csiteApp.workPackage.progress">Progress</span></dt>
+        <dd>
+            <span>{{workPackage.progress}}</span>
+        </dd>
         <dt><span jhiTranslate="csiteApp.workPackage.constructionsite">Constructionsite</span></dt>
         <dd>
             <div *ngIf="workPackage.constructionsiteId">

@@ -60,6 +60,12 @@ public class WorkPackageResourceIntTest {
     private static final WorkPackageStatus DEFAULT_STATUS = WorkPackageStatus.PLANNED;
     private static final WorkPackageStatus UPDATED_STATUS = WorkPackageStatus.OPEN;
 
+    private static final Integer DEFAULT_DURATION = 1;
+    private static final Integer UPDATED_DURATION = 2;
+
+    private static final Double DEFAULT_PROGRESS = 1D;
+    private static final Double UPDATED_PROGRESS = 2D;
+
     @Autowired
     private WorkPackageRepository workPackageRepository;
 
@@ -109,7 +115,9 @@ public class WorkPackageResourceIntTest {
             .name(DEFAULT_NAME)
             .startDate(DEFAULT_START_DATE)
             .endDate(DEFAULT_END_DATE)
-            .status(DEFAULT_STATUS);
+            .status(DEFAULT_STATUS)
+            .duration(DEFAULT_DURATION)
+            .progress(DEFAULT_PROGRESS);
         return workPackage;
     }
 
@@ -138,6 +146,8 @@ public class WorkPackageResourceIntTest {
         assertThat(testWorkPackage.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testWorkPackage.getEndDate()).isEqualTo(DEFAULT_END_DATE);
         assertThat(testWorkPackage.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testWorkPackage.getDuration()).isEqualTo(DEFAULT_DURATION);
+        assertThat(testWorkPackage.getProgress()).isEqualTo(DEFAULT_PROGRESS);
     }
 
     @Test
@@ -174,7 +184,9 @@ public class WorkPackageResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(sameInstant(DEFAULT_START_DATE))))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(sameInstant(DEFAULT_END_DATE))))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION)))
+            .andExpect(jsonPath("$.[*].progress").value(hasItem(DEFAULT_PROGRESS.doubleValue())));
     }
 
     @Test
@@ -191,7 +203,9 @@ public class WorkPackageResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.startDate").value(sameInstant(DEFAULT_START_DATE)))
             .andExpect(jsonPath("$.endDate").value(sameInstant(DEFAULT_END_DATE)))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION))
+            .andExpect(jsonPath("$.progress").value(DEFAULT_PROGRESS.doubleValue()));
     }
 
     @Test
@@ -404,6 +418,111 @@ public class WorkPackageResourceIntTest {
         defaultWorkPackageShouldNotBeFound("status.specified=false");
     }
 
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByDurationIsEqualToSomething() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where duration equals to DEFAULT_DURATION
+        defaultWorkPackageShouldBeFound("duration.equals=" + DEFAULT_DURATION);
+
+        // Get all the workPackageList where duration equals to UPDATED_DURATION
+        defaultWorkPackageShouldNotBeFound("duration.equals=" + UPDATED_DURATION);
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByDurationIsInShouldWork() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where duration in DEFAULT_DURATION or UPDATED_DURATION
+        defaultWorkPackageShouldBeFound("duration.in=" + DEFAULT_DURATION + "," + UPDATED_DURATION);
+
+        // Get all the workPackageList where duration equals to UPDATED_DURATION
+        defaultWorkPackageShouldNotBeFound("duration.in=" + UPDATED_DURATION);
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByDurationIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where duration is not null
+        defaultWorkPackageShouldBeFound("duration.specified=true");
+
+        // Get all the workPackageList where duration is null
+        defaultWorkPackageShouldNotBeFound("duration.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByDurationIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where duration greater than or equals to DEFAULT_DURATION
+        defaultWorkPackageShouldBeFound("duration.greaterOrEqualThan=" + DEFAULT_DURATION);
+
+        // Get all the workPackageList where duration greater than or equals to UPDATED_DURATION
+        defaultWorkPackageShouldNotBeFound("duration.greaterOrEqualThan=" + UPDATED_DURATION);
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByDurationIsLessThanSomething() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where duration less than or equals to DEFAULT_DURATION
+        defaultWorkPackageShouldNotBeFound("duration.lessThan=" + DEFAULT_DURATION);
+
+        // Get all the workPackageList where duration less than or equals to UPDATED_DURATION
+        defaultWorkPackageShouldBeFound("duration.lessThan=" + UPDATED_DURATION);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByProgressIsEqualToSomething() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where progress equals to DEFAULT_PROGRESS
+        defaultWorkPackageShouldBeFound("progress.equals=" + DEFAULT_PROGRESS);
+
+        // Get all the workPackageList where progress equals to UPDATED_PROGRESS
+        defaultWorkPackageShouldNotBeFound("progress.equals=" + UPDATED_PROGRESS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByProgressIsInShouldWork() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where progress in DEFAULT_PROGRESS or UPDATED_PROGRESS
+        defaultWorkPackageShouldBeFound("progress.in=" + DEFAULT_PROGRESS + "," + UPDATED_PROGRESS);
+
+        // Get all the workPackageList where progress equals to UPDATED_PROGRESS
+        defaultWorkPackageShouldNotBeFound("progress.in=" + UPDATED_PROGRESS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllWorkPackagesByProgressIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        workPackageRepository.saveAndFlush(workPackage);
+
+        // Get all the workPackageList where progress is not null
+        defaultWorkPackageShouldBeFound("progress.specified=true");
+
+        // Get all the workPackageList where progress is null
+        defaultWorkPackageShouldNotBeFound("progress.specified=false");
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -415,7 +534,9 @@ public class WorkPackageResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(sameInstant(DEFAULT_START_DATE))))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(sameInstant(DEFAULT_END_DATE))))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION)))
+            .andExpect(jsonPath("$.[*].progress").value(hasItem(DEFAULT_PROGRESS.doubleValue())));
     }
 
     /**
@@ -451,7 +572,9 @@ public class WorkPackageResourceIntTest {
             .name(UPDATED_NAME)
             .startDate(UPDATED_START_DATE)
             .endDate(UPDATED_END_DATE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .duration(UPDATED_DURATION)
+            .progress(UPDATED_PROGRESS);
         WorkPackageDTO workPackageDTO = workPackageMapper.toDto(updatedWorkPackage);
 
         restWorkPackageMockMvc.perform(put("/api/work-packages")
@@ -467,6 +590,8 @@ public class WorkPackageResourceIntTest {
         assertThat(testWorkPackage.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testWorkPackage.getEndDate()).isEqualTo(UPDATED_END_DATE);
         assertThat(testWorkPackage.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testWorkPackage.getDuration()).isEqualTo(UPDATED_DURATION);
+        assertThat(testWorkPackage.getProgress()).isEqualTo(UPDATED_PROGRESS);
     }
 
     @Test

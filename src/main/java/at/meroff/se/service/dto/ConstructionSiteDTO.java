@@ -28,9 +28,13 @@ public class ConstructionSiteDTO implements Serializable {
 
     private String containerLastName;
 
+    private String containerFirstName;
+
     private Long customerId;
 
     private String customerLastName;
+
+    private String customerFirstName;
 
     public Long getId() {
         return id;
@@ -96,6 +100,14 @@ public class ConstructionSiteDTO implements Serializable {
         this.containerLastName = personLastName;
     }
 
+    public String getContainerFirstName() {
+        return containerFirstName;
+    }
+
+    public void setContainerFirstName(String personFirstName) {
+        this.containerFirstName = personFirstName;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
@@ -110,6 +122,14 @@ public class ConstructionSiteDTO implements Serializable {
 
     public void setCustomerLastName(String personLastName) {
         this.customerLastName = personLastName;
+    }
+
+    public String getCustomerFirstName() {
+        return customerFirstName;
+    }
+
+    public void setCustomerFirstName(String personFirstName) {
+        this.customerFirstName = personFirstName;
     }
 
     @Override

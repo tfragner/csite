@@ -33,7 +33,6 @@ export class WorkPackageDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('asdf');
         this.isSaving = false;
         this.constructionSiteService.query()
             .subscribe((res: ResponseWrapper) => { this.constructionsites = res.json; }, (res: ResponseWrapper) => this.onError(res.json));

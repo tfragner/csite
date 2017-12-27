@@ -16,12 +16,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="csiteApp.constructionSite.prjNumber">Prj Number</span></th>
             <th><span jhiTranslate="csiteApp.constructionSite.prjName">Prj Name</span></th>
-            <th><span jhiTranslate="csiteApp.constructionSite.kran">Kran</span></th>
+            <!--<th><span jhiTranslate="csiteApp.constructionSite.kran">Kran</span></th>
             <th><span jhiTranslate="csiteApp.constructionSite.stapler">Stapler</span></th>
-            <th><span jhiTranslate="csiteApp.constructionSite.maxLKWType">Max LKW Type</span></th>
+            <th><span jhiTranslate="csiteApp.constructionSite.maxLKWType">Max LKW Type</span></th>-->
             <th><span jhiTranslate="csiteApp.constructionSite.container">Container</span></th>
             <th><span jhiTranslate="csiteApp.constructionSite.customer">Customer</span></th>
             <th></th>
@@ -29,12 +29,12 @@
             </thead>
             <tbody>
             <tr *ngFor="let constructionSite of constructionSites ;trackBy: trackId">
-                <td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.id}}</a></td>
-                <td>{{constructionSite.prjNumber}}</td>
-                <td>{{constructionSite.prjName}}</td>
-                <td>{{constructionSite.kran}}</td>
+                <!--<td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.id}}</a></td>-->
+                <td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.prjNumber}}</a></td>
+                <td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.prjName}}</a></td>
+                <!--<td>{{constructionSite.kran}}</td>
                 <td>{{constructionSite.stapler}}</td>
-                <td jhiTranslate="{{'csiteApp.LKWType.' + constructionSite.maxLKWType}}">{{constructionSite.maxLKWType}}</td>
+                <td jhiTranslate="{{'csiteApp.LKWType.' + constructionSite.maxLKWType}}">{{constructionSite.maxLKWType}}</td>-->
                 <td>
                     <div *ngIf="constructionSite.containerId">
                         <a [routerLink]="['../person', constructionSite.containerId  ]" >{{constructionSite.containerLastName}}</a>

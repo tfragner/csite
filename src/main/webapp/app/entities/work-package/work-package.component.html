@@ -1,4 +1,5 @@
-<gantt></gantt>
+<jhi-gantt-diagram [csiteid]="csiteId"></jhi-gantt-diagram>
+<hr>
 <div>
     <h2>
         <span jhiTranslate="csiteApp.workPackage.home.title">Work Packages</span>
@@ -28,6 +29,8 @@
             <th><span jhiTranslate="csiteApp.workPackage.startDate">Start Date</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.endDate">End Date</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.status">Status</span></th>
+            <th><span jhiTranslate="csiteApp.workPackage.duration">Duration</span></th>
+            <th><span jhiTranslate="csiteApp.workPackage.progress">Progress</span></th>
             <th><span jhiTranslate="csiteApp.workPackage.constructionsite">Constructionsite</span></th>
             <th></th>
             </tr>
@@ -39,6 +42,8 @@
                 <td>{{workPackage.startDate | date:'medium'}}</td>
                 <td>{{workPackage.endDate | date:'medium'}}</td>
                 <td jhiTranslate="{{'csiteApp.WorkPackageStatus.' + workPackage.status}}">{{workPackage.status}}</td>
+                <td>{{workPackage.duration}}</td>
+                <td>{{workPackage.progress}}</td>
                 <td>
                     <div *ngIf="workPackage.constructionsiteId">
                         <a [routerLink]="['../construction-site', workPackage.constructionsiteId  ]" >{{workPackage.constructionsitePrjName}}</a>

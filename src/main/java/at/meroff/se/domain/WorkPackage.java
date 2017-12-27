@@ -40,6 +40,12 @@ public class WorkPackage implements Serializable {
     @Column(name = "status")
     private WorkPackageStatus status;
 
+    @Column(name = "duration")
+    private Integer duration;
+
+    @Column(name = "progress")
+    private Double progress;
+
     @OneToMany(mappedBy = "workpackage")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -109,6 +115,32 @@ public class WorkPackage implements Serializable {
         this.status = status;
     }
 
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public WorkPackage duration(Integer duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Double getProgress() {
+        return progress;
+    }
+
+    public WorkPackage progress(Double progress) {
+        this.progress = progress;
+        return this;
+    }
+
+    public void setProgress(Double progress) {
+        this.progress = progress;
+    }
+
     public Set<Delivery> getDeliveries() {
         return deliveries;
     }
@@ -176,6 +208,8 @@ public class WorkPackage implements Serializable {
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", duration='" + getDuration() + "'" +
+            ", progress='" + getProgress() + "'" +
             "}";
     }
 }

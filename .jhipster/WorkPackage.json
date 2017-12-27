@@ -31,6 +31,14 @@
             "fieldName": "status",
             "fieldType": "WorkPackageStatus",
             "fieldValues": "PLANNED,OPEN,FINISHED"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "progress",
+            "fieldType": "Double"
         }
     ],
     "changelogDate": "20171105204543",
