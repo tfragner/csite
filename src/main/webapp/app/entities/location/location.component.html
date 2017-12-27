@@ -1,7 +1,13 @@
 <div>
     <h2>
         <span jhiTranslate="csiteApp.location.home.title">Locations</span>
-        <button class="btn btn-primary float-right jh-create-entity create-location" [routerLink]="['/', { outlets: { popup: ['location-new'] } }]">
+        <button *ngIf="csiteId" class="btn btn-primary float-right jh-create-entity create-location" [routerLink]="['/', { outlets: { popup: ['location-new', csiteId] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="csiteApp.location.home.createLabel">
+            Create new Location
+            </span>
+        </button>
+        <button *ngIf="csiteId==null" class="btn btn-primary float-right jh-create-entity create-location" [routerLink]="['/', { outlets: { popup: ['location-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="csiteApp.location.home.createLabel">
             Create new Location

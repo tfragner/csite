@@ -79,4 +79,17 @@ public class LocationService {
         log.debug("Request to delete Location : {}", id);
         locationRepository.delete(id);
     }
+
+    /**
+     *  Get all the locations.
+     *
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<LocationDTO> findAllByConstructionsite_Id(Long id) {
+        log.debug("Request to get all Locations");
+        return locationRepository.findAllByConstructionSite_Id(id).stream()
+            .map(locationMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
 }
