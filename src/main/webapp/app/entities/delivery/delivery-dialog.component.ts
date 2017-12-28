@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import {Component, OnInit, OnDestroy, ElementRef, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
@@ -32,6 +32,8 @@ export class DeliveryDialogComponent implements OnInit {
 
     locations: Location[];
 
+    @Input() csiteId;
+
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
@@ -50,12 +52,27 @@ export class DeliveryDialogComponent implements OnInit {
         this.isSaving = false;
         this.checklistService.query()
             .subscribe((res: ResponseWrapper) => { this.checklists = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.workPackageService.query()
-            .subscribe((res: ResponseWrapper) => { this.workpackages = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.personService.query()
+        console.log("asdfasdfsadfsdfsadf")
+        if (this.csiteId == null) {
+            this.workPackageService.query()
+                .subscribe((res: ResponseWrapper) => {
+                    this.workpackages = res.json;
+                }, (res: ResponseWrapper) => this.onError(res.json));
+        } else {
+            this.workPackageService.queryByConstructionSite(this.csiteId)
+                .subscribe((res: ResponseWrapper) => {
+                    this.workpackages = res.json;
+                }, (res: ResponseWrapper) => this.onError(res.json));
+        }
+        this.personService.querySupplier()
             .subscribe((res: ResponseWrapper) => { this.people = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.locationService.query()
-            .subscribe((res: ResponseWrapper) => { this.locations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        if (this.csiteId == null) {
+            this.locationService.query()
+                .subscribe((res: ResponseWrapper) => { this.locations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        } else {
+            this.locationService.queryByConstructionSite(this.csiteId)
+                .subscribe((res: ResponseWrapper) => { this.locations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        }
     }
 
     byteSize(field) {
@@ -146,6 +163,39 @@ export class DeliveryPopupComponent implements OnInit, OnDestroy {
             } else {
                 this.deliveryPopupService
                     .open(DeliveryDialogComponent as Component);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}
+
+@Component({
+    selector: 'jhi-delivery-csite-popup',
+    template: ''
+})
+export class DeliveryWithCsitePopupComponent implements OnInit, OnDestroy {
+
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private deliveryPopupService: DeliveryPopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['csiteId'] && params['id']) {
+                this.deliveryPopupService
+                    .openWithIdAndCsiteId(DeliveryDialogComponent as Component, params['id'], params['csiteId']);
+            }else if ( params['csiteId'] ) {
+                this.deliveryPopupService
+                    .openWithCsiteId(DeliveryDialogComponent as Component, params['csiteId']);
+            } else {
+                this.deliveryPopupService
+                    .openWithCsiteId(DeliveryDialogComponent as Component);
             }
         });
     }

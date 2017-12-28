@@ -14,6 +14,7 @@ import {
     deliveryRoute,
     deliveryPopupRoute,
 } from './';
+import {DeliveryWithCsitePopupComponent} from "./delivery-dialog.component";
 
 const ENTITY_STATES = [
     ...deliveryRoute,
@@ -31,12 +32,14 @@ const ENTITY_STATES = [
         DeliveryDialogComponent,
         DeliveryDeleteDialogComponent,
         DeliveryPopupComponent,
+        DeliveryWithCsitePopupComponent,
         DeliveryDeletePopupComponent,
     ],
     entryComponents: [
         DeliveryComponent,
         DeliveryDialogComponent,
         DeliveryPopupComponent,
+        DeliveryWithCsitePopupComponent,
         DeliveryDeleteDialogComponent,
         DeliveryDeletePopupComponent,
     ],

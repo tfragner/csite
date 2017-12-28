@@ -6,7 +6,7 @@ import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { DeliveryComponent } from './delivery.component';
 import { DeliveryDetailComponent } from './delivery-detail.component';
-import { DeliveryPopupComponent } from './delivery-dialog.component';
+import {DeliveryPopupComponent, DeliveryWithCsitePopupComponent} from './delivery-dialog.component';
 import { DeliveryDeletePopupComponent } from './delivery-delete-dialog.component';
 
 export const deliveryRoute: Routes = [
@@ -41,8 +41,28 @@ export const deliveryPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'delivery-new/:csiteId',
+        component: DeliveryWithCsitePopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'csiteApp.delivery.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
         path: 'delivery/:id/edit',
         component: DeliveryPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'csiteApp.delivery.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'delivery/:id/edit/:csiteId',
+        component: DeliveryWithCsitePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'csiteApp.delivery.home.title'

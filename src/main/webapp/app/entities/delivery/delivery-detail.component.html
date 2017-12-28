@@ -73,4 +73,13 @@
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: ['checklist-new', delivery.id] } }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span  jhiTranslate="csiteApp.checklist.home.createLabel">
+            Create new Checklist
+            </span>
+    </button>
 </div>

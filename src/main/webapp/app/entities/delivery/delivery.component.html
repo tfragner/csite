@@ -1,7 +1,13 @@
 <div>
     <h2>
         <span jhiTranslate="csiteApp.delivery.home.title">Deliveries</span>
-        <button class="btn btn-primary float-right jh-create-entity create-delivery" [routerLink]="['/', { outlets: { popup: ['delivery-new'] } }]">
+        <button *ngIf="csiteId" class="btn btn-primary float-right jh-create-entity create-delivery" [routerLink]="['/', { outlets: { popup: ['delivery-new', csiteId] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="csiteApp.delivery.home.createLabel">
+            Create new Delivery
+            </span>
+        </button>
+        <button *ngIf="csiteId==null" class="btn btn-primary float-right jh-create-entity create-delivery" [routerLink]="['/', { outlets: { popup: ['delivery-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="csiteApp.delivery.home.createLabel">
             Create new Delivery
@@ -71,8 +77,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
-                                replaceUrl="true"
+                                [routerLink]="['/', { outlets: { popup: ['delivery', delivery.id, 'edit', csiteId]} }]"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>

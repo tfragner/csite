@@ -6,7 +6,7 @@ import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { ChecklistComponent } from './checklist.component';
 import { ChecklistDetailComponent } from './checklist-detail.component';
-import { ChecklistPopupComponent } from './checklist-dialog.component';
+import {ChecklistPopupComponent, ChecklistWithDeliveryPopupComponent} from './checklist-dialog.component';
 import { ChecklistDeletePopupComponent } from './checklist-delete-dialog.component';
 
 export const checklistRoute: Routes = [
@@ -33,6 +33,16 @@ export const checklistPopupRoute: Routes = [
     {
         path: 'checklist-new',
         component: ChecklistPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'csiteApp.checklist.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'checklist-new/:deliveryId',
+        component: ChecklistWithDeliveryPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'csiteApp.checklist.home.title'
