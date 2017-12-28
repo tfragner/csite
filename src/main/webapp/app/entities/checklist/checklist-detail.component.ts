@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Input, EventEmitter, Output} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager } from 'ng-jhipster';
@@ -16,6 +16,9 @@ export class ChecklistDetailComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
+    @Input() blabla: number;
+    @Output() checklistUpdated = new EventEmitter();
+
     constructor(
         private eventManager: JhiEventManager,
         private checklistService: ChecklistService,
@@ -24,9 +27,16 @@ export class ChecklistDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+
         this.subscription = this.route.params.subscribe((params) => {
-            this.load(params['id']);
+            if (this.blabla != null) {
+                this.load(this.blabla);
+            } else {
+                this.load(params['id']);
+            }
+
         });
+
         this.registerChangeInChecklists();
     }
 
@@ -47,7 +57,7 @@ export class ChecklistDetailComponent implements OnInit, OnDestroy {
     registerChangeInChecklists() {
         this.eventSubscriber = this.eventManager.subscribe(
             'checklistListModification',
-            (response) => this.load(this.checklist.id)
+            (response) => {this.load(this.checklist.id); this.checklistUpdated.emit(this.checklist)}
         );
     }
 }

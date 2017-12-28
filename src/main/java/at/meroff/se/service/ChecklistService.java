@@ -1,7 +1,10 @@
 package at.meroff.se.service;
 
 import at.meroff.se.domain.Checklist;
+import at.meroff.se.domain.Delivery;
+import at.meroff.se.domain.enumeration.DeliveryStatus;
 import at.meroff.se.repository.ChecklistRepository;
+import at.meroff.se.repository.DeliveryRepository;
 import at.meroff.se.service.dto.ChecklistDTO;
 import at.meroff.se.service.mapper.ChecklistMapper;
 import org.slf4j.Logger;
@@ -26,9 +29,12 @@ public class ChecklistService {
 
     private final ChecklistMapper checklistMapper;
 
-    public ChecklistService(ChecklistRepository checklistRepository, ChecklistMapper checklistMapper) {
+    private final DeliveryRepository deliveryRepository;
+
+    public ChecklistService(ChecklistRepository checklistRepository, ChecklistMapper checklistMapper, DeliveryRepository deliveryRepository) {
         this.checklistRepository = checklistRepository;
         this.checklistMapper = checklistMapper;
+        this.deliveryRepository = deliveryRepository;
     }
 
     /**
@@ -38,6 +44,11 @@ public class ChecklistService {
      * @return the persisted entity
      */
     public ChecklistDTO save(ChecklistDTO checklistDTO) {
+        if (checklistDTO.isComplete() && checklistDTO.isInTime() && checklistDTO.isNotDamaged() && checklistDTO.isUnloadingOk()) {
+            Delivery one = deliveryRepository.findOne(checklistDTO.getDeliveryId());
+            one.setStatus(DeliveryStatus.CLOSED);
+            deliveryRepository.save(one);
+        }
         log.debug("Request to save Checklist : {}", checklistDTO);
         Checklist checklist = checklistMapper.toEntity(checklistDTO);
         checklist = checklistRepository.save(checklist);

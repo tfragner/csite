@@ -122,4 +122,18 @@ public class ArticleResource {
         articleService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * GET  /articles/delivery/:id : get the "id" article.
+     *
+     * @param id the id of the articleDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the articleDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/articles/delivery/{id}")
+    @Timed
+    public ResponseEntity<List<ArticleDTO>> getAllByDelivery_Id(@PathVariable Long id) {
+        log.debug("REST request to get Article : {}", id);
+        List<ArticleDTO> entityList = articleService.findAllByDelivery_Id(id);
+        return ResponseEntity.ok().body(entityList);
+    }
 }

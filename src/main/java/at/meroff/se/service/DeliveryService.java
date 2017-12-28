@@ -1,6 +1,9 @@
 package at.meroff.se.service;
 
+import at.meroff.se.domain.Checklist;
 import at.meroff.se.domain.Delivery;
+import at.meroff.se.domain.enumeration.DeliveryStatus;
+import at.meroff.se.repository.ChecklistRepository;
 import at.meroff.se.repository.DeliveryRepository;
 import at.meroff.se.service.dto.DeliveryDTO;
 import at.meroff.se.service.mapper.DeliveryMapper;
@@ -11,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -27,9 +31,12 @@ public class DeliveryService {
 
     private final DeliveryMapper deliveryMapper;
 
-    public DeliveryService(DeliveryRepository deliveryRepository, DeliveryMapper deliveryMapper) {
+    private final ChecklistRepository checklistRepository;
+
+    public DeliveryService(DeliveryRepository deliveryRepository, DeliveryMapper deliveryMapper, ChecklistRepository checklistRepository) {
         this.deliveryRepository = deliveryRepository;
         this.deliveryMapper = deliveryMapper;
+        this.checklistRepository = checklistRepository;
     }
 
     /**
@@ -41,6 +48,21 @@ public class DeliveryService {
     public DeliveryDTO save(DeliveryDTO deliveryDTO) {
         log.debug("Request to save Delivery : {}", deliveryDTO);
         Delivery delivery = deliveryMapper.toEntity(deliveryDTO);
+        delivery = deliveryRepository.save(delivery);
+
+        if (Objects.isNull(deliveryDTO.getId())) {
+            Checklist newChecklist = new Checklist();
+            newChecklist.setComplete(false);
+            newChecklist.setDescription("");
+            newChecklist.setInTime(false);
+            newChecklist.setNotDamaged(false);
+            newChecklist.setUnloadingOk(false);
+            newChecklist.setDelivery(delivery);
+            newChecklist = checklistRepository.save(newChecklist);
+            delivery.setChecklist(newChecklist);
+        }
+
+
         delivery = deliveryRepository.save(delivery);
         return deliveryMapper.toDto(delivery);
     }
@@ -66,9 +88,12 @@ public class DeliveryService {
     @Transactional(readOnly = true)
     public List<DeliveryDTO> findAllByCsiteId(Long id) {
         log.debug("Request to get all Deliveries");
-        return deliveryRepository.findAllByWorkpackage_Constructionsite_Id(id).stream()
+        LinkedList<Delivery> collect = deliveryRepository.findAllByWorkpackage_Constructionsite_Id(id).stream()
+            .collect(Collectors.toCollection(LinkedList::new));
+        LinkedList<DeliveryDTO> collect1 = collect.stream()
             .map(deliveryMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
+        return collect1;
     }
 
 

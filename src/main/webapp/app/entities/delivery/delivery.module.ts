@@ -14,7 +14,9 @@ import {
     deliveryRoute,
     deliveryPopupRoute,
 } from './';
-import {DeliveryWithCsitePopupComponent} from "./delivery-dialog.component";
+import {DeliveryWithCsitePopupComponent} from './delivery-dialog.component';
+import {CsiteChecklistModule} from '../checklist/checklist.module';
+import {CsiteArticleModule} from '../article/article.module';
 
 const ENTITY_STATES = [
     ...deliveryRoute,
@@ -24,6 +26,8 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         CsiteSharedModule,
+        CsiteChecklistModule,
+        CsiteArticleModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [

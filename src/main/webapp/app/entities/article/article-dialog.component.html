@@ -23,7 +23,7 @@
                 [(ngModel)]="article.quantity"  />
         </div>
 
-        <div class="form-group">
+        <div *ngIf="(article.id == null && article.deliveryId == null) || article.id" class="form-group">
             <label class="form-control-label" jhiTranslate="csiteApp.article.delivery" for="field_delivery">Delivery</label>
             <select class="form-control" id="field_delivery" name="delivery" [(ngModel)]="article.deliveryId" >
                 <option [ngValue]="null"></option>

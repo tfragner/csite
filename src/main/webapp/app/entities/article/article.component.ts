@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -16,6 +16,8 @@ articles: Article[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
+    @Input() deliveryId;
+
     constructor(
         private articleService: ArticleService,
         private jhiAlertService: JhiAlertService,
@@ -25,12 +27,22 @@ articles: Article[];
     }
 
     loadAll() {
-        this.articleService.query().subscribe(
-            (res: ResponseWrapper) => {
-                this.articles = res.json;
-            },
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
+        if (this.deliveryId) {
+            this.articleService.queryByDelivery(this.deliveryId).subscribe(
+                (res: ResponseWrapper) => {
+                    this.articles = res.json;
+                },
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
+        } else {
+            this.articleService.query().subscribe(
+                (res: ResponseWrapper) => {
+                    this.articles = res.json;
+                },
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
+        }
+
     }
     ngOnInit() {
         this.loadAll();

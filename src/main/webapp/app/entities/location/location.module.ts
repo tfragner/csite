@@ -16,7 +16,7 @@ import {
     locationRoute,
     locationPopupRoute,
 } from './';
-import {LocationWithCsitePopupComponent} from "./location-dialog.component";
+import {LocationWithCsitePopupComponent} from './location-dialog.component';
 
 const ENTITY_STATES = [
     ...locationRoute,

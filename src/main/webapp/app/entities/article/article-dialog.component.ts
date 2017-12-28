@@ -106,3 +106,33 @@ export class ArticlePopupComponent implements OnInit, OnDestroy {
         this.routeSub.unsubscribe();
     }
 }
+
+@Component({
+    selector: 'jhi-article-delivery-popup',
+    template: ''
+})
+export class ArticleWithDeliveryPopupComponent implements OnInit, OnDestroy {
+
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private articlePopupService: ArticlePopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['deliveryId'] ) {
+                this.articlePopupService
+                    .openWithDeliveryId(ArticleDialogComponent as Component, params['deliveryId']);
+            } else {
+                this.articlePopupService
+                    .openWithDeliveryId(ArticleDialogComponent as Component);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}

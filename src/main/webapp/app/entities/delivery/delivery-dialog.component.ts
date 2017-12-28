@@ -52,7 +52,6 @@ export class DeliveryDialogComponent implements OnInit {
         this.isSaving = false;
         this.checklistService.query()
             .subscribe((res: ResponseWrapper) => { this.checklists = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        console.log("asdfasdfsadfsdfsadf")
         if (this.csiteId == null) {
             this.workPackageService.query()
                 .subscribe((res: ResponseWrapper) => {

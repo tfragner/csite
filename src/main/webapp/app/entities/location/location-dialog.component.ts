@@ -150,7 +150,3 @@ export class LocationWithCsitePopupComponent implements OnInit, OnDestroy {
         this.routeSub.unsubscribe();
     }
 }
-
-
-
-

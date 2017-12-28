@@ -14,6 +14,7 @@ import {
     articleRoute,
     articlePopupRoute,
 } from './';
+import {ArticleWithDeliveryPopupComponent} from './article-dialog.component';
 
 const ENTITY_STATES = [
     ...articleRoute,
@@ -31,18 +32,23 @@ const ENTITY_STATES = [
         ArticleDialogComponent,
         ArticleDeleteDialogComponent,
         ArticlePopupComponent,
+        ArticleWithDeliveryPopupComponent,
         ArticleDeletePopupComponent,
     ],
     entryComponents: [
         ArticleComponent,
         ArticleDialogComponent,
         ArticlePopupComponent,
+        ArticleWithDeliveryPopupComponent,
         ArticleDeleteDialogComponent,
         ArticleDeletePopupComponent,
     ],
     providers: [
         ArticleService,
         ArticlePopupService,
+    ],
+    exports: [
+        ArticleComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

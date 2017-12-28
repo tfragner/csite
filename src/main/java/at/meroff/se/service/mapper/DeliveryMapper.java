@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Delivery and its DTO DeliveryDTO.
  */
-@Mapper(componentModel = "spring", uses = {WorkPackageMapper.class, PersonMapper.class, LocationMapper.class})
+@Mapper(componentModel = "spring", uses = {WorkPackageMapper.class, PersonMapper.class, LocationMapper.class, ChecklistMapper.class})
 public interface DeliveryMapper extends EntityMapper<DeliveryDTO, Delivery> {
 
     @Mapping(source = "workpackage.id", target = "workpackageId")
@@ -17,7 +17,8 @@ public interface DeliveryMapper extends EntityMapper<DeliveryDTO, Delivery> {
     @Mapping(source = "person.lastName", target = "personLastName")
     @Mapping(source = "location.id", target = "locationId")
     @Mapping(source = "location.name", target = "locationName")
-    DeliveryDTO toDto(Delivery delivery); 
+    @Mapping(source = "checklist", target = "checklist")
+    DeliveryDTO toDto(Delivery delivery);
 
     @Mapping(target = "articles", ignore = true)
     @Mapping(target = "checklist", ignore = true)

@@ -71,7 +71,6 @@ public class Delivery implements Serializable {
     private Set<Article> articles = new HashSet<>();
 
     @OneToOne(mappedBy = "delivery")
-    @JsonIgnore
     private Checklist checklist;
 
     @ManyToOne
