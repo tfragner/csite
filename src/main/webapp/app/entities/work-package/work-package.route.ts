@@ -34,7 +34,7 @@ export const workPackagePopupRoute: Routes = [
         path: 'work-package-new',
         component: WorkPackagePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.workPackage.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -44,7 +44,7 @@ export const workPackagePopupRoute: Routes = [
         path: 'work-package-new/:csiteId',
         component: WorkPackageWithCsitePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.workPackage.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -54,7 +54,7 @@ export const workPackagePopupRoute: Routes = [
         path: 'work-package/:id/edit',
         component: WorkPackagePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.workPackage.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const workPackagePopupRoute: Routes = [
         path: 'work-package/:id/delete',
         component: WorkPackageDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.workPackage.home.title'
         },
         canActivate: [UserRouteAccessService],

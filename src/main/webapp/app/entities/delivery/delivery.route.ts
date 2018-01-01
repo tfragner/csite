@@ -34,7 +34,7 @@ export const deliveryPopupRoute: Routes = [
         path: 'delivery-new',
         component: DeliveryPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.delivery.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -44,7 +44,7 @@ export const deliveryPopupRoute: Routes = [
         path: 'delivery-new/:csiteId',
         component: DeliveryWithCsitePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.delivery.home.title'
         },
         canActivate: [UserRouteAccessService],

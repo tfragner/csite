@@ -66,25 +66,26 @@
             class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
+    <div *jhiHasAnyAuthority="'ROLE_CONTAINER'">
+        <button type="button"
+                [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
+                replaceUrl="true"
+                class="btn btn-primary">
+            <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        </button>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
-
-    <button *ngIf="delivery.checklist == null" type="button"
-            [routerLink]="['/', { outlets: { popup: ['checklist-new', delivery.id] } }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span  jhiTranslate="csiteApp.checklist.home.createLabel">
-            Create new Checklist
-            </span>
-    </button>
+        <button *ngIf="delivery.checklist == null" type="button"
+                [routerLink]="['/', { outlets: { popup: ['checklist-new', delivery.id] } }]"
+                replaceUrl="true"
+                class="btn btn-primary">
+            <span class="fa fa-pencil"></span>&nbsp;<span  jhiTranslate="csiteApp.checklist.home.createLabel">
+                Create new Checklist
+                </span>
+        </button>
+    </div>
 </div>
 <div class="col-md-6" *ngIf="delivery && delivery.checklist != null">
-<jhi-checklist-detail (checklistUpdated)="handleChecklistUpdate($event)" [blabla]="delivery.checklist.id"></jhi-checklist-detail>
+<jhi-checklist-detail *jhiHasAnyAuthority="'ROLE_CONTAINER'" (checklistUpdated)="handleChecklistUpdate($event)" [blabla]="delivery.checklist.id"></jhi-checklist-detail>
 </div>
 </div>
 <hr>

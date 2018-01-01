@@ -34,7 +34,7 @@ export const locationPopupRoute: Routes = [
         path: 'location-new',
         component: LocationPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_CONTAINER'],
             pageTitle: 'csiteApp.location.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -44,7 +44,7 @@ export const locationPopupRoute: Routes = [
         path: 'location-new/:csiteId',
         component: LocationWithCsitePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_CONTAINER'],
             pageTitle: 'csiteApp.location.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -54,7 +54,7 @@ export const locationPopupRoute: Routes = [
         path: 'location/:id/edit',
         component: LocationPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_CONTAINER'],
             pageTitle: 'csiteApp.location.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -64,7 +64,7 @@ export const locationPopupRoute: Routes = [
         path: 'location/:id/delete',
         component: LocationDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_CONTAINER'],
             pageTitle: 'csiteApp.location.home.title'
         },
         canActivate: [UserRouteAccessService],

@@ -14,6 +14,7 @@ import { WorkPackage, WorkPackageService } from '../work-package';
 import { Person, PersonService } from '../person';
 import { Location, LocationService } from '../location';
 import { ResponseWrapper } from '../../shared';
+import {Principal} from "../../shared/auth/principal.service";
 
 @Component({
     selector: 'jhi-delivery-dialog',
@@ -32,6 +33,9 @@ export class DeliveryDialogComponent implements OnInit {
 
     locations: Location[];
 
+    isSales: boolean;
+    isContainer: boolean;
+
     @Input() csiteId;
 
     constructor(
@@ -44,7 +48,8 @@ export class DeliveryDialogComponent implements OnInit {
         private personService: PersonService,
         private locationService: LocationService,
         private elementRef: ElementRef,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private principal: Principal
     ) {
     }
 
@@ -72,6 +77,10 @@ export class DeliveryDialogComponent implements OnInit {
             this.locationService.queryByConstructionSite(this.csiteId)
                 .subscribe((res: ResponseWrapper) => { this.locations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         }
+
+        this.principal.identity().then((account) => this.principal.hasAnyAuthority(['ROLE_SALES'])).then(asdf => {this.isSales = !asdf;});
+        this.principal.identity().then((account) => this.principal.hasAnyAuthority(['ROLE_CONTAINER'])).then(asdf => {this.isContainer = !asdf;});
+
     }
 
     byteSize(field) {
@@ -138,6 +147,10 @@ export class DeliveryDialogComponent implements OnInit {
 
     trackLocationById(index: number, item: Location) {
         return item.id;
+    }
+
+    isDisabled() {
+        return this.isSales;
     }
 }
 

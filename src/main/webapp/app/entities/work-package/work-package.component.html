@@ -2,6 +2,7 @@
 <div>
     <h2>
         <span jhiTranslate="csiteApp.workPackage.home.title">Work Packages</span>
+        <div *jhiHasAnyAuthority="'ROLE_SALES'" >
         <button *ngIf="csiteId" class="btn btn-primary float-right jh-create-entity create-work-package" [routerLink]="['/', { outlets: { popup: ['work-package-new', csiteId] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="csiteApp.workPackage.home.createLabel">
@@ -14,6 +15,7 @@
             Create new Work Package
             </span>
         </button>
+        </div>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -56,14 +58,14 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_SALES'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'work-package/'+ workPackage.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_SALES'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'work-package/'+ workPackage.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">

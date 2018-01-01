@@ -1,18 +1,20 @@
 <div>
     <h2>
         <span jhiTranslate="csiteApp.delivery.home.title">Deliveries</span>
-        <button *ngIf="csiteId" class="btn btn-primary float-right jh-create-entity create-delivery" [routerLink]="['/', { outlets: { popup: ['delivery-new', csiteId] } }]">
-            <span class="fa fa-plus"></span>
-            <span  jhiTranslate="csiteApp.delivery.home.createLabel">
-            Create new Delivery
-            </span>
-        </button>
-        <button *ngIf="csiteId==null" class="btn btn-primary float-right jh-create-entity create-delivery" [routerLink]="['/', { outlets: { popup: ['delivery-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span  jhiTranslate="csiteApp.delivery.home.createLabel">
-            Create new Delivery
-            </span>
-        </button>
+        <div *jhiHasAnyAuthority="'ROLE_SALES'">
+            <button *ngIf="csiteId" class="btn btn-primary float-right jh-create-entity create-delivery" [routerLink]="['/', { outlets: { popup: ['delivery-new', csiteId] } }]">
+                <span class="fa fa-plus"></span>
+                <span  jhiTranslate="csiteApp.delivery.home.createLabel">
+                Create new Delivery
+                </span>
+            </button>
+            <button *ngIf="csiteId==null" class="btn btn-primary float-right jh-create-entity create-delivery" [routerLink]="['/', { outlets: { popup: ['delivery-new'] } }]">
+                <span class="fa fa-plus"></span>
+                <span  jhiTranslate="csiteApp.delivery.home.createLabel">
+                Create new Delivery
+                </span>
+            </button>
+        </div>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -76,13 +78,13 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_DRIVER'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: ['delivery', delivery.id, 'edit', csiteId]} }]"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_SALES'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
