@@ -14,6 +14,7 @@ import {
     checklistRoute,
     checklistPopupRoute,
 } from './';
+import {ChecklistWithDeliveryPopupComponent} from './checklist-dialog.component';
 
 const ENTITY_STATES = [
     ...checklistRoute,
@@ -31,18 +32,23 @@ const ENTITY_STATES = [
         ChecklistDialogComponent,
         ChecklistDeleteDialogComponent,
         ChecklistPopupComponent,
+        ChecklistWithDeliveryPopupComponent,
         ChecklistDeletePopupComponent,
     ],
     entryComponents: [
         ChecklistComponent,
         ChecklistDialogComponent,
         ChecklistPopupComponent,
+        ChecklistWithDeliveryPopupComponent,
         ChecklistDeleteDialogComponent,
         ChecklistDeletePopupComponent,
     ],
     providers: [
         ChecklistService,
         ChecklistPopupService,
+    ],
+    exports: [
+        ChecklistDetailComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -43,6 +43,10 @@ public class WorkPackageCriteria implements Serializable {
 
     private WorkPackageStatusFilter status;
 
+    private IntegerFilter duration;
+
+    private DoubleFilter progress;
+
     private LongFilter constructionsiteId;
 
     public WorkPackageCriteria() {
@@ -88,6 +92,22 @@ public class WorkPackageCriteria implements Serializable {
         this.status = status;
     }
 
+    public IntegerFilter getDuration() {
+        return duration;
+    }
+
+    public void setDuration(IntegerFilter duration) {
+        this.duration = duration;
+    }
+
+    public DoubleFilter getProgress() {
+        return progress;
+    }
+
+    public void setProgress(DoubleFilter progress) {
+        this.progress = progress;
+    }
+
     public LongFilter getConstructionsiteId() {
         return constructionsiteId;
     }
@@ -104,6 +124,8 @@ public class WorkPackageCriteria implements Serializable {
                 (startDate != null ? "startDate=" + startDate + ", " : "") +
                 (endDate != null ? "endDate=" + endDate + ", " : "") +
                 (status != null ? "status=" + status + ", " : "") +
+                (duration != null ? "duration=" + duration + ", " : "") +
+                (progress != null ? "progress=" + progress + ", " : "") +
                 (constructionsiteId != null ? "constructionsiteId=" + constructionsiteId + ", " : "") +
             "}";
     }

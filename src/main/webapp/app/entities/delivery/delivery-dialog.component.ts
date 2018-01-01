@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import {Component, OnInit, OnDestroy, ElementRef, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
@@ -14,6 +14,7 @@ import { WorkPackage, WorkPackageService } from '../work-package';
 import { Person, PersonService } from '../person';
 import { Location, LocationService } from '../location';
 import { ResponseWrapper } from '../../shared';
+import {Principal} from "../../shared/auth/principal.service";
 
 @Component({
     selector: 'jhi-delivery-dialog',
@@ -32,6 +33,11 @@ export class DeliveryDialogComponent implements OnInit {
 
     locations: Location[];
 
+    isSales: boolean;
+    isContainer: boolean;
+
+    @Input() csiteId;
+
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
@@ -42,7 +48,8 @@ export class DeliveryDialogComponent implements OnInit {
         private personService: PersonService,
         private locationService: LocationService,
         private elementRef: ElementRef,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private principal: Principal
     ) {
     }
 
@@ -50,12 +57,30 @@ export class DeliveryDialogComponent implements OnInit {
         this.isSaving = false;
         this.checklistService.query()
             .subscribe((res: ResponseWrapper) => { this.checklists = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.workPackageService.query()
-            .subscribe((res: ResponseWrapper) => { this.workpackages = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.personService.query()
+        if (this.csiteId == null) {
+            this.workPackageService.query()
+                .subscribe((res: ResponseWrapper) => {
+                    this.workpackages = res.json;
+                }, (res: ResponseWrapper) => this.onError(res.json));
+        } else {
+            this.workPackageService.queryByConstructionSite(this.csiteId)
+                .subscribe((res: ResponseWrapper) => {
+                    this.workpackages = res.json;
+                }, (res: ResponseWrapper) => this.onError(res.json));
+        }
+        this.personService.querySupplier()
             .subscribe((res: ResponseWrapper) => { this.people = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.locationService.query()
-            .subscribe((res: ResponseWrapper) => { this.locations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        if (this.csiteId == null) {
+            this.locationService.query()
+                .subscribe((res: ResponseWrapper) => { this.locations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        } else {
+            this.locationService.queryByConstructionSite(this.csiteId)
+                .subscribe((res: ResponseWrapper) => { this.locations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        }
+
+        this.principal.identity().then((account) => this.principal.hasAnyAuthority(['ROLE_SALES'])).then(asdf => {this.isSales = !asdf;});
+        this.principal.identity().then((account) => this.principal.hasAnyAuthority(['ROLE_CONTAINER'])).then(asdf => {this.isContainer = !asdf;});
+
     }
 
     byteSize(field) {
@@ -123,6 +148,10 @@ export class DeliveryDialogComponent implements OnInit {
     trackLocationById(index: number, item: Location) {
         return item.id;
     }
+
+    isDisabled() {
+        return this.isSales;
+    }
 }
 
 @Component({
@@ -146,6 +175,39 @@ export class DeliveryPopupComponent implements OnInit, OnDestroy {
             } else {
                 this.deliveryPopupService
                     .open(DeliveryDialogComponent as Component);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}
+
+@Component({
+    selector: 'jhi-delivery-csite-popup',
+    template: ''
+})
+export class DeliveryWithCsitePopupComponent implements OnInit, OnDestroy {
+
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private deliveryPopupService: DeliveryPopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['csiteId'] && params['id']) {
+                this.deliveryPopupService
+                    .openWithIdAndCsiteId(DeliveryDialogComponent as Component, params['id'], params['csiteId']);
+            }else if ( params['csiteId'] ) {
+                this.deliveryPopupService
+                    .openWithCsiteId(DeliveryDialogComponent as Component, params['csiteId']);
+            } else {
+                this.deliveryPopupService
+                    .openWithCsiteId(DeliveryDialogComponent as Component);
             }
         });
     }

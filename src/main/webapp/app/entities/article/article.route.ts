@@ -6,7 +6,7 @@ import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { ArticleComponent } from './article.component';
 import { ArticleDetailComponent } from './article-detail.component';
-import { ArticlePopupComponent } from './article-dialog.component';
+import {ArticlePopupComponent, ArticleWithDeliveryPopupComponent} from './article-dialog.component';
 import { ArticleDeletePopupComponent } from './article-delete-dialog.component';
 
 export const articleRoute: Routes = [
@@ -34,7 +34,17 @@ export const articlePopupRoute: Routes = [
         path: 'article-new',
         component: ArticlePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
+            pageTitle: 'csiteApp.article.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'article-new/:deliveryId',
+        component: ArticleWithDeliveryPopupComponent,
+        data: {
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.article.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -44,7 +54,7 @@ export const articlePopupRoute: Routes = [
         path: 'article/:id/edit',
         component: ArticlePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.article.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -54,7 +64,7 @@ export const articlePopupRoute: Routes = [
         path: 'article/:id/delete',
         component: ArticleDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.article.home.title'
         },
         canActivate: [UserRouteAccessService],

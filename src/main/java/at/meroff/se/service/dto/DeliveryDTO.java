@@ -4,9 +4,12 @@ package at.meroff.se.service.dto;
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.Objects;
 import javax.persistence.Lob;
+
+import at.meroff.se.domain.Checklist;
 import at.meroff.se.domain.enumeration.UnloadingType;
 import at.meroff.se.domain.enumeration.AvisoType;
 import at.meroff.se.domain.enumeration.DeliveryStatus;
@@ -48,6 +51,8 @@ public class DeliveryDTO implements Serializable {
     private Long locationId;
 
     private String locationName;
+
+    private Checklist checklist;
 
     public Long getId() {
         return id;
@@ -176,6 +181,10 @@ public class DeliveryDTO implements Serializable {
     public void setLocationName(String locationName) {
         this.locationName = locationName;
     }
+
+    public Checklist getChecklist() {return checklist;}
+
+    public void setChecklist(Checklist checklist) {this.checklist = checklist;}
 
     @Override
     public boolean equals(Object o) {

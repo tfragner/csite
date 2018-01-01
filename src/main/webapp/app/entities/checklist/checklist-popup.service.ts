@@ -39,6 +39,32 @@ export class ChecklistPopupService {
         });
     }
 
+    openWithDeliveryId(component: Component, deliveryId?: number | any): Promise<NgbModalRef> {
+        return new Promise<NgbModalRef>((resolve, reject) => {
+            const isOpen = this.ngbModalRef !== null;
+            if (isOpen) {
+                resolve(this.ngbModalRef);
+            }
+
+            if (deliveryId) {
+                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
+                setTimeout(() => {
+                    const temp = new Checklist();
+                    temp.deliveryId = deliveryId;
+
+                    this.ngbModalRef = this.checklistModalRef(component, temp);
+                    resolve(this.ngbModalRef);
+                }, 0);
+            } else {
+                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
+                setTimeout(() => {
+                    this.ngbModalRef = this.checklistModalRef(component, new Checklist());
+                    resolve(this.ngbModalRef);
+                }, 0);
+            }
+        });
+    }
+
     checklistModalRef(component: Component, checklist: Checklist): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.checklist = checklist;

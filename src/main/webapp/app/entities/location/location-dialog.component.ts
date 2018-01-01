@@ -120,3 +120,33 @@ export class LocationPopupComponent implements OnInit, OnDestroy {
         this.routeSub.unsubscribe();
     }
 }
+
+@Component({
+    selector: 'jhi-location-csite-popup',
+    template: ''
+})
+export class LocationWithCsitePopupComponent implements OnInit, OnDestroy {
+
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private locationPopupService: LocationPopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['csiteId'] ) {
+                this.locationPopupService
+                    .openWithCsiteId(LocationDialogComponent as Component, params['csiteId']);
+            } else {
+                this.locationPopupService
+                    .openWithCsiteId(LocationDialogComponent as Component);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}

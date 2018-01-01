@@ -1,12 +1,20 @@
 <div>
     <h2>
         <span jhiTranslate="csiteApp.location.home.title">Locations</span>
-        <button class="btn btn-primary float-right jh-create-entity create-location" [routerLink]="['/', { outlets: { popup: ['location-new'] } }]">
+        <div *jhiHasAnyAuthority="'ROLE_CONTAINER'">
+        <button *ngIf="csiteId" class="btn btn-primary float-right jh-create-entity create-location" [routerLink]="['/', { outlets: { popup: ['location-new', csiteId] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="csiteApp.location.home.createLabel">
             Create new Location
             </span>
         </button>
+        <button *ngIf="csiteId==null" class="btn btn-primary float-right jh-create-entity create-location" [routerLink]="['/', { outlets: { popup: ['location-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="csiteApp.location.home.createLabel">
+            Create new Location
+            </span>
+        </button>
+        </div>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -16,21 +24,21 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="csiteApp.location.name">Name</span></th>
-            <th><span jhiTranslate="csiteApp.location.longitude">Longitude</span></th>
-            <th><span jhiTranslate="csiteApp.location.latitude">Latitude</span></th>
-            <th><span jhiTranslate="csiteApp.location.constructionSite">Construction Site</span></th>
+            <th *ngIf="!csiteId"><span jhiTranslate="csiteApp.location.longitude">Longitude</span></th>
+            <th *ngIf="!csiteId"><span jhiTranslate="csiteApp.location.latitude">Latitude</span></th>
+            <th *ngIf="!csiteId"><span jhiTranslate="csiteApp.location.constructionSite">Construction Site</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let location of locations ;trackBy: trackId">
-                <td><a [routerLink]="['../location', location.id ]">{{location.id}}</a></td>
-                <td>{{location.name}}</td>
-                <td>{{location.longitude}}</td>
-                <td>{{location.latitude}}</td>
-                <td>
+                <!--<td><a [routerLink]="['../location', location.id ]">{{location.id}}</a></td>-->
+                <td><a [routerLink]="['../location', location.id ]">{{location.name}}</a></td>
+                <td *ngIf="!csiteId">{{location.longitude}}</td>
+                <td *ngIf="!csiteId">{{location.latitude}}</td>
+                <td *ngIf="!csiteId">
                     <div *ngIf="location.constructionSiteId">
                         <a [routerLink]="['../construction-site', location.constructionSiteId  ]" >{{location.constructionSitePrjName}}</a>
                     </div>
@@ -43,14 +51,14 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_CONTAINER'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'location/'+ location.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_CONTAINER'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'location/'+ location.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">

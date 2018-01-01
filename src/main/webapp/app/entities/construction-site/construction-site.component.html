@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="csiteApp.constructionSite.home.title">Construction Sites</span>
-        <button class="btn btn-primary float-right jh-create-entity create-construction-site" [routerLink]="['/', { outlets: { popup: ['construction-site-new'] } }]">
+        <button *jhiHasAnyAuthority="'ROLE_SALES'" class="btn btn-primary float-right jh-create-entity create-construction-site" [routerLink]="['/', { outlets: { popup: ['construction-site-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="csiteApp.constructionSite.home.createLabel">
             Create new Construction Site
@@ -16,12 +16,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="csiteApp.constructionSite.prjNumber">Prj Number</span></th>
             <th><span jhiTranslate="csiteApp.constructionSite.prjName">Prj Name</span></th>
-            <th><span jhiTranslate="csiteApp.constructionSite.kran">Kran</span></th>
+            <!--<th><span jhiTranslate="csiteApp.constructionSite.kran">Kran</span></th>
             <th><span jhiTranslate="csiteApp.constructionSite.stapler">Stapler</span></th>
-            <th><span jhiTranslate="csiteApp.constructionSite.maxLKWType">Max LKW Type</span></th>
+            <th><span jhiTranslate="csiteApp.constructionSite.maxLKWType">Max LKW Type</span></th>-->
             <th><span jhiTranslate="csiteApp.constructionSite.container">Container</span></th>
             <th><span jhiTranslate="csiteApp.constructionSite.customer">Customer</span></th>
             <th></th>
@@ -29,12 +29,12 @@
             </thead>
             <tbody>
             <tr *ngFor="let constructionSite of constructionSites ;trackBy: trackId">
-                <td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.id}}</a></td>
-                <td>{{constructionSite.prjNumber}}</td>
-                <td>{{constructionSite.prjName}}</td>
-                <td>{{constructionSite.kran}}</td>
+                <!--<td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.id}}</a></td>-->
+                <td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.prjNumber}}</a></td>
+                <td><a [routerLink]="['../construction-site', constructionSite.id ]">{{constructionSite.prjName}}</a></td>
+                <!--<td>{{constructionSite.kran}}</td>
                 <td>{{constructionSite.stapler}}</td>
-                <td jhiTranslate="{{'csiteApp.LKWType.' + constructionSite.maxLKWType}}">{{constructionSite.maxLKWType}}</td>
+                <td jhiTranslate="{{'csiteApp.LKWType.' + constructionSite.maxLKWType}}">{{constructionSite.maxLKWType}}</td>-->
                 <td>
                     <div *ngIf="constructionSite.containerId">
                         <a [routerLink]="['../person', constructionSite.containerId  ]" >{{constructionSite.containerLastName}}</a>
@@ -53,14 +53,14 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_SALES'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'construction-site/'+ constructionSite.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_SALES'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'construction-site/'+ constructionSite.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">

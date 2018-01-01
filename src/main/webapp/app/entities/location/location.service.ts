@@ -10,6 +10,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class LocationService {
 
     private resourceUrl = SERVER_API_URL + 'api/locations';
+    private resourceUrlByConstructionSite = SERVER_API_URL + 'api/locations/construction_site';
 
     constructor(private http: Http) { }
 
@@ -75,5 +76,10 @@ export class LocationService {
     private convert(location: Location): Location {
         const copy: Location = Object.assign({}, location);
         return copy;
+    }
+
+    queryByConstructionSite(id: number): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUrlByConstructionSite}/${id}`)
+            .map((res: Response) => this.convertResponse(res));
     }
 }

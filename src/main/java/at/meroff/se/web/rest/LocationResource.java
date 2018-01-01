@@ -122,4 +122,19 @@ public class LocationResource {
         locationService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * GET  /locations/:id : get the "id" location.
+     *
+     * @param id the id of the locationDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the locationDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/locations/construction_site/{id}")
+    @Timed
+    public ResponseEntity<List<LocationDTO>> getAllByConstructionsite_Id(@PathVariable Long id) {
+        log.debug("REST request to get Location : {}", id);
+        List<LocationDTO> entityList = locationService.findAllByConstructionsite_Id(id);
+        return ResponseEntity.ok().body(entityList);
+    }
+
 }

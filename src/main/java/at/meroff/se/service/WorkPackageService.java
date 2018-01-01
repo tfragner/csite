@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,6 +42,8 @@ public class WorkPackageService {
     public WorkPackageDTO save(WorkPackageDTO workPackageDTO) {
         log.debug("Request to save WorkPackage : {}", workPackageDTO);
         WorkPackage workPackage = workPackageMapper.toEntity(workPackageDTO);
+        workPackage.setDuration((int)ChronoUnit.DAYS.between(workPackage.getStartDate().toLocalDate(), workPackage.getEndDate().toLocalDate()));
+        workPackage.setProgress(0.5);
         workPackage = workPackageRepository.save(workPackage);
         return workPackageMapper.toDto(workPackage);
     }

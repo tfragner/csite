@@ -34,7 +34,7 @@ export const constructionSitePopupRoute: Routes = [
         path: 'construction-site-new',
         component: ConstructionSitePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.constructionSite.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -44,7 +44,7 @@ export const constructionSitePopupRoute: Routes = [
         path: 'construction-site/:id/edit',
         component: ConstructionSitePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.constructionSite.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -54,7 +54,7 @@ export const constructionSitePopupRoute: Routes = [
         path: 'construction-site/:id/delete',
         component: ConstructionSiteDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SALES'],
             pageTitle: 'csiteApp.constructionSite.home.title'
         },
         canActivate: [UserRouteAccessService],

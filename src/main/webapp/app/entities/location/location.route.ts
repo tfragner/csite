@@ -6,7 +6,7 @@ import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { LocationComponent } from './location.component';
 import { LocationDetailComponent } from './location-detail.component';
-import { LocationPopupComponent } from './location-dialog.component';
+import {LocationPopupComponent, LocationWithCsitePopupComponent} from './location-dialog.component';
 import { LocationDeletePopupComponent } from './location-delete-dialog.component';
 
 export const locationRoute: Routes = [
@@ -34,7 +34,17 @@ export const locationPopupRoute: Routes = [
         path: 'location-new',
         component: LocationPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_CONTAINER'],
+            pageTitle: 'csiteApp.location.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'location-new/:csiteId',
+        component: LocationWithCsitePopupComponent,
+        data: {
+            authorities: ['ROLE_CONTAINER'],
             pageTitle: 'csiteApp.location.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -44,7 +54,7 @@ export const locationPopupRoute: Routes = [
         path: 'location/:id/edit',
         component: LocationPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_CONTAINER'],
             pageTitle: 'csiteApp.location.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -54,7 +64,7 @@ export const locationPopupRoute: Routes = [
         path: 'location/:id/delete',
         component: LocationDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_CONTAINER'],
             pageTitle: 'csiteApp.location.home.title'
         },
         canActivate: [UserRouteAccessService],

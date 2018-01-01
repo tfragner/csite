@@ -13,9 +13,12 @@ public interface ConstructionSiteMapper extends EntityMapper<ConstructionSiteDTO
 
     @Mapping(source = "container.id", target = "containerId")
     @Mapping(source = "container.lastName", target = "containerLastName")
+    @Mapping(source = "container.firstName", target = "containerFirstName")
     @Mapping(source = "customer.id", target = "customerId")
     @Mapping(source = "customer.lastName", target = "customerLastName")
-    ConstructionSiteDTO toDto(ConstructionSite constructionSite); 
+    @Mapping(source = "customer.firstName", target = "customerFirstName")
+
+    ConstructionSiteDTO toDto(ConstructionSite constructionSite);
 
     @Mapping(target = "workpackages", ignore = true)
     @Mapping(target = "locations", ignore = true)

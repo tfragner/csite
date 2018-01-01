@@ -3,57 +3,61 @@
     <h2><span jhiTranslate="csiteApp.constructionSite.detail.title">Construction Site</span> - {{constructionSite.prjName}} [{{constructionSite.id}}]</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="csiteApp.constructionSite.prjNumber">Prj Number</span></dt>
-        <dd>
-            <span>{{constructionSite.prjNumber}}</span>
-        </dd>
-        <dt><span jhiTranslate="csiteApp.constructionSite.prjName">Prj Name</span></dt>
-        <dd>
-            <span>{{constructionSite.prjName}}</span>
-        </dd>
-        <dt><span jhiTranslate="csiteApp.constructionSite.kran">Kran</span></dt>
-        <dd>
-            <span>{{constructionSite.kran}}</span>
-        </dd>
-        <dt><span jhiTranslate="csiteApp.constructionSite.stapler">Stapler</span></dt>
-        <dd>
-            <span>{{constructionSite.stapler}}</span>
-        </dd>
-        <dt><span jhiTranslate="csiteApp.constructionSite.maxLKWType">Max LKW Type</span></dt>
-        <dd>
-            <span jhiTranslate="{{'csiteApp.LKWType.' + constructionSite.maxLKWType}}">{{constructionSite.maxLKWType}}</span>
-        </dd>
-        <dt><span jhiTranslate="csiteApp.constructionSite.container">Container</span></dt>
-        <dd>
-            <div *ngIf="constructionSite.containerId">
-                <a [routerLink]="['/person', constructionSite.containerId]">{{constructionSite.containerLastName}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="csiteApp.constructionSite.customer">Customer</span></dt>
-        <dd>
-            <div *ngIf="constructionSite.customerId">
-                <a [routerLink]="['/person', constructionSite.customerId]">{{constructionSite.customerLastName}}</a>
-            </div>
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-4">
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="csiteApp.constructionSite.prjNumber">Prj Number</span></dt>
+                <dd>
+                    <span>{{constructionSite.prjNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="csiteApp.constructionSite.prjName">Prj Name</span></dt>
+                <dd>
+                    <span>{{constructionSite.prjName}}</span>
+                </dd>
+                <dt><span jhiTranslate="csiteApp.constructionSite.kran">Kran</span></dt>
+                <dd>
+                    <span>{{constructionSite.kran}}</span>
+                </dd>
+                <dt><span jhiTranslate="csiteApp.constructionSite.stapler">Stapler</span></dt>
+                <dd>
+                    <span>{{constructionSite.stapler}}</span>
+                </dd>
+                <dt><span jhiTranslate="csiteApp.constructionSite.maxLKWType">Max LKW Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'csiteApp.LKWType.' + constructionSite.maxLKWType}}">{{constructionSite.maxLKWType}}</span>
+                </dd>
+                <dt><span jhiTranslate="csiteApp.constructionSite.container">Container</span></dt>
+                <dd>
+                    <div *ngIf="constructionSite.containerId">
+                        <a [routerLink]="['/person', constructionSite.containerId]">{{constructionSite.containerFirstName}} {{constructionSite.containerLastName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="csiteApp.constructionSite.customer">Customer</span></dt>
+                <dd>
+                    <div *ngIf="constructionSite.customerId">
+                        <a [routerLink]="['/person', constructionSite.customerId]">{{constructionSite.customerFirstName}} {{constructionSite.customerLastName}}</a>
+                    </div>
+                </dd>
+            </dl>
+            <hr>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
+            <button *jhiHasAnyAuthority="'ROLE_SALES'" type="button"
+                    [routerLink]="['/', { outlets: { popup: 'construction-site/'+ constructionSite.id + '/edit'} }]"
+                    replaceUrl="true"
+                    class="btn btn-primary">
+                <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+        <div class="col-md-8"><jhi-location [csiteId]="csiteId"></jhi-location></div>
+    </div>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'construction-site/'+ constructionSite.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
 </div>
 <hr>
 <jhi-work-package [csiteId]="csiteId"></jhi-work-package>
-<hr>
-<jhi-location [csiteId]="csiteId"></jhi-location>
 <hr>
 <jhi-delivery [csiteId]="csiteId"></jhi-delivery>

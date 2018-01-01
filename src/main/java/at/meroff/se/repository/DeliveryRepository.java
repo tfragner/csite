@@ -16,6 +16,7 @@ import java.util.Set;
 @Repository
 public interface DeliveryRepository extends JpaRepository<Delivery, Long>, JpaSpecificationExecutor<Delivery> {
 
+    @Query("select d from Delivery d left join fetch d.checklist c left join fetch d.workpackage w left join fetch w.constructionsite con where con.id =(:csiteId)")
     Set<Delivery> findAllByWorkpackage_Constructionsite_Id(@Param("csiteId") Long csiteId);
 
 }

@@ -39,6 +39,32 @@ export class LocationPopupService {
         });
     }
 
+    openWithCsiteId(component: Component, csiteId?: number | any): Promise<NgbModalRef> {
+        return new Promise<NgbModalRef>((resolve, reject) => {
+            const isOpen = this.ngbModalRef !== null;
+            if (isOpen) {
+                resolve(this.ngbModalRef);
+            }
+
+            if (csiteId) {
+                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
+                setTimeout(() => {
+                    const temp = new Location();
+                    temp.constructionSiteId = csiteId;
+
+                    this.ngbModalRef = this.locationModalRef(component, temp);
+                    resolve(this.ngbModalRef);
+                }, 0);
+            } else {
+                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
+                setTimeout(() => {
+                    this.ngbModalRef = this.locationModalRef(component, new Location());
+                    resolve(this.ngbModalRef);
+                }, 0);
+            }
+        });
+    }
+
     locationModalRef(component: Component, location: Location): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.location = location;

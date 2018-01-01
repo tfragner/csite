@@ -92,6 +92,12 @@ public class WorkPackageQueryService extends QueryService<WorkPackage> {
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), WorkPackage_.status));
             }
+            if (criteria.getDuration() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDuration(), WorkPackage_.duration));
+            }
+            if (criteria.getProgress() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getProgress(), WorkPackage_.progress));
+            }
             if (criteria.getConstructionsiteId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getConstructionsiteId(), WorkPackage_.constructionsite, ConstructionSite_.id));
             }

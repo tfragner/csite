@@ -1,5 +1,6 @@
 package at.meroff.se.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -38,6 +39,7 @@ public class Checklist implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    @JsonIgnore
     private Delivery delivery;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

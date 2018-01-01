@@ -19,6 +19,8 @@
             "startDate": "Start Date",
             "endDate": "End Date",
             "status": "Status",
+            "duration": "Duration",
+            "progress": "Progress",
             "delivery": "Delivery",
             "constructionsite": "Constructionsite"
         }

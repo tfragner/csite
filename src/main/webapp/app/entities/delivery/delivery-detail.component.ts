@@ -58,4 +58,8 @@ export class DeliveryDetailComponent implements OnInit, OnDestroy {
             (response) => this.load(this.delivery.id)
         );
     }
+
+    handleChecklistUpdate(checklist) {
+        this.load(this.delivery.id);
+    }
 }

@@ -13,7 +13,9 @@ public interface WorkPackageMapper extends EntityMapper<WorkPackageDTO, WorkPack
 
     @Mapping(source = "constructionsite.id", target = "constructionsiteId")
     @Mapping(source = "constructionsite.prjName", target = "constructionsitePrjName")
-    WorkPackageDTO toDto(WorkPackage workPackage); 
+    @Mapping(source = "name", target = "text")
+    @Mapping(source = "startDate", target = "start_date")
+    WorkPackageDTO toDto(WorkPackage workPackage);
 
     @Mapping(target = "deliveries", ignore = true)
     @Mapping(source = "constructionsiteId", target = "constructionsite")

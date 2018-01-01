@@ -28,7 +28,7 @@ locations: Location[];
 
     loadAll() {
         if (this.csiteId) {
-            this.locationService.queryCsite(this.csiteId).subscribe(
+            this.locationService.queryByConstructionSite(this.csiteId).subscribe(
                 (res: ResponseWrapper) => {
                     this.locations = res.json;
                 },

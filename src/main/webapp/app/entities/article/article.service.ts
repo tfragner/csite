@@ -10,6 +10,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class ArticleService {
 
     private resourceUrl = SERVER_API_URL + 'api/articles';
+    private resourceUrlByDelivery = SERVER_API_URL + 'api/articles/delivery';
 
     constructor(private http: Http) { }
 
@@ -69,5 +70,10 @@ export class ArticleService {
     private convert(article: Article): Article {
         const copy: Article = Object.assign({}, article);
         return copy;
+    }
+
+    queryByDelivery(id: number): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUrlByDelivery}/${id}`)
+            .map((res: Response) => this.convertResponse(res));
     }
 }

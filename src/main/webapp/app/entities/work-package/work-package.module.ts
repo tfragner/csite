@@ -17,6 +17,7 @@ import {
 } from './';
 import {CalendarModule, DataTableModule} from 'primeng/primeng';
 import {SharedModule} from 'primeng/components/common/shared';
+import {GanttComponent} from './gantt.component';
 
 const ENTITY_STATES = [
     ...workPackageRoute,
@@ -39,6 +40,7 @@ const ENTITY_STATES = [
         WorkPackagePopupComponent,
         WorkPackageWithCsitePopupComponent,
         WorkPackageDeletePopupComponent,
+        GanttComponent,
     ],
     entryComponents: [
         WorkPackageComponent,

@@ -117,3 +117,33 @@ export class ChecklistPopupComponent implements OnInit, OnDestroy {
         this.routeSub.unsubscribe();
     }
 }
+
+@Component({
+    selector: 'jhi-checklist-popup',
+    template: ''
+})
+export class ChecklistWithDeliveryPopupComponent implements OnInit, OnDestroy {
+
+    routeSub: any;
+
+    constructor(
+        private route: ActivatedRoute,
+        private checklistPopupService: ChecklistPopupService
+    ) {}
+
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            if ( params['deliveryId'] ) {
+                this.checklistPopupService
+                    .openWithDeliveryId(ChecklistDialogComponent as Component, params['deliveryId']);
+            } else {
+                this.checklistPopupService
+                    .openWithDeliveryId(ChecklistDialogComponent as Component);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
+}

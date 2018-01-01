@@ -79,4 +79,17 @@ public class ArticleService {
         log.debug("Request to delete Article : {}", id);
         articleRepository.delete(id);
     }
+
+    /**
+     *  Get all the articles by delivery id.
+     *
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ArticleDTO> findAllByDelivery_Id(Long id) {
+        log.debug("Request to get all Articles by delivery id: {}", id);
+        return articleRepository.findAllByDelivery_Id(id).stream()
+            .map(articleMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
 }

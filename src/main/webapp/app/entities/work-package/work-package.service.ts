@@ -7,6 +7,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import { WorkPackage } from './work-package.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
+import {Task} from './task.model';
 
 @Injectable()
 export class WorkPackageService {

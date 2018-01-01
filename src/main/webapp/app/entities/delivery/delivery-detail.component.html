@@ -1,5 +1,5 @@
-
-<div *ngIf="delivery">
+<div class="row">
+<div class="col-md-6" *ngIf="delivery">
     <h2><span jhiTranslate="csiteApp.delivery.detail.title">Delivery</span> {{delivery.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
@@ -66,11 +66,31 @@
             class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
+    <div *jhiHasAnyAuthority="'ROLE_CONTAINER'">
+        <button type="button"
+                [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
+                replaceUrl="true"
+                class="btn btn-primary">
+            <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        </button>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'delivery/'+ delivery.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+        <button *ngIf="delivery.checklist == null" type="button"
+                [routerLink]="['/', { outlets: { popup: ['checklist-new', delivery.id] } }]"
+                replaceUrl="true"
+                class="btn btn-primary">
+            <span class="fa fa-pencil"></span>&nbsp;<span  jhiTranslate="csiteApp.checklist.home.createLabel">
+                Create new Checklist
+                </span>
+        </button>
+    </div>
+</div>
+<div class="col-md-6" *ngIf="delivery && delivery.checklist != null">
+<jhi-checklist-detail *jhiHasAnyAuthority="'ROLE_CONTAINER'" (checklistUpdated)="handleChecklistUpdate($event)" [blabla]="delivery.checklist.id"></jhi-checklist-detail>
+</div>
+</div>
+<hr>
+<div class="row" *ngIf="delivery">
+    <div class="col-md-12">
+        <jhi-article [deliveryId]="delivery.id"></jhi-article>
+    </div>
 </div>

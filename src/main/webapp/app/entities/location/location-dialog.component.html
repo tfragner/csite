@@ -31,7 +31,7 @@
                 [(ngModel)]="location.latitude"  />
         </div>
 
-        <div class="form-group">
+        <div  *ngIf="(location.id == null && location.constructionSiteId == null) || location.id" class="form-group">
             <label class="form-control-label" jhiTranslate="csiteApp.location.constructionSite" for="field_constructionSite">Construction Site</label>
             <select class="form-control" id="field_constructionSite" name="constructionSite" [(ngModel)]="location.constructionSiteId" >
                 <option [ngValue]="null"></option>

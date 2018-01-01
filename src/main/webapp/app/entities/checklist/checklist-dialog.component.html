@@ -38,7 +38,7 @@
                 [(ngModel)]="checklist.description"  />
         </div>
 
-        <div class="form-group">
+        <div *ngIf="(checklist.id == null && checklist.deliveryId == null) || checklist.id" class="form-group">
             <label class="form-control-label" jhiTranslate="csiteApp.checklist.delivery" for="field_delivery">Delivery</label>
             <select class="form-control" id="field_delivery" name="delivery" [(ngModel)]="checklist.deliveryId">
                 <option [ngValue]="null"></option>

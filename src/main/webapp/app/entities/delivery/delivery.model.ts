@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import {Checklist} from '../checklist/checklist.model';
 
 export const enum UnloadingType {
     'KRAN',
@@ -40,6 +41,7 @@ export class Delivery implements BaseEntity {
         public workpackageId?: number,
         public personId?: number,
         public locationId?: number,
+        public checklist?: Checklist
     ) {
     }
 }

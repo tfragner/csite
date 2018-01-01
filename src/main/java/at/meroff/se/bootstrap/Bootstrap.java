@@ -1,9 +1,7 @@
 package at.meroff.se.bootstrap;
 
 import at.meroff.se.domain.Location;
-import at.meroff.se.domain.enumeration.LKWType;
-import at.meroff.se.domain.enumeration.PersonType;
-import at.meroff.se.domain.enumeration.WorkPackageStatus;
+import at.meroff.se.domain.enumeration.*;
 import at.meroff.se.service.*;
 import at.meroff.se.service.dto.*;
 import org.slf4j.Logger;
@@ -141,28 +139,28 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         l1.setLongitude(14.408922F);
         l1.setLatitude(48.038681F);
         l1.setName("Hauptentladeplatz");
-        locationService.save(l1);
+        l1 = locationService.save(l1);
 
         LocationDTO l2 = new LocationDTO();
         l2.setConstructionSiteId(site1.getId());
         l2.setLongitude(14.428922F);
         l2.setLatitude(48.068681F);
         l2.setName("Nebenentladeplatz");
-        locationService.save(l2);
+        l2 = locationService.save(l2);
 
         LocationDTO l3 = new LocationDTO();
         l3.setConstructionSiteId(site2.getId());
         l3.setLongitude(14.408922F);
         l3.setLatitude(48.038681F);
         l3.setName("Hauptentladeplatz");
-        locationService.save(l3);
+        l3 = locationService.save(l3);
 
         LocationDTO l4 = new LocationDTO();
         l4.setConstructionSiteId(site2.getId());
         l4.setLongitude(14.428922F);
         l4.setLatitude(48.068681F);
         l4.setName("Nebenentladeplatz");
-        locationService.save(l4);
+        l4 = locationService.save(l4);
 
         // Deliveries
         DeliveryDTO d1 = new DeliveryDTO();
@@ -174,9 +172,28 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         d1.setLkwType(LKWType.T70);
         d1.setWorkpackageId(p1.getId());
         d1.setLocationId(l1.getId());
+        d1.setUnloading(UnloadingType.STAPLER);
+        d1.setAvisoType(AvisoType.MATANLIEFERUNG);
+        d1.setStatus(DeliveryStatus.OPEN);
+        d1.setPersonId(1L);
+        d1.setLocationId(1L);
         d1 = deliveryService.save(d1);
 
-
+        // Deliveries
+        DeliveryDTO d2 = new DeliveryDTO();
+        d2.setOrderNumber("123");
+        d2.setKalenderwoche(52);
+        d2.setDate(ZonedDateTime.of(LocalDateTime.of(
+            LocalDate.parse("12.12.2017", dateFormat), LocalTime.parse("08:00", timeFormat)
+        ), ZoneId.systemDefault()));
+        d2.setLkwType(LKWType.T70);
+        d2.setWorkpackageId(p3.getId());
+        d2.setLocationId(l3.getId());
+        d2.setUnloading(UnloadingType.STAPLER);
+        d2.setAvisoType(AvisoType.MATANLIEFERUNG);
+        d2.setStatus(DeliveryStatus.OPEN);
+        d2.setPersonId(1L);
+        d2 = deliveryService.save(d2);
 
     }
 }
