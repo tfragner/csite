@@ -93,6 +93,9 @@ public class ChecklistQueryService extends QueryService<Checklist> {
             if (criteria.getDescription() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getDescription(), Checklist_.description));
             }
+            if (criteria.getClaim() != null) {
+                specification = specification.and(buildSpecification(criteria.getClaim(), Checklist_.claim));
+            }
             if (criteria.getDeliveryId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getDeliveryId(), Checklist_.delivery, Delivery_.id));
             }

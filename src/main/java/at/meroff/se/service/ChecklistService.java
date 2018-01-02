@@ -49,6 +49,11 @@ public class ChecklistService {
             one.setStatus(DeliveryStatus.CLOSED);
             deliveryRepository.save(one);
         }
+        if (checklistDTO.isClaim()) {
+            Delivery one = deliveryRepository.findOne(checklistDTO.getDeliveryId());
+            one.setStatus(DeliveryStatus.RECLAMATION);
+            deliveryRepository.save(one);
+        }
         log.debug("Request to save Checklist : {}", checklistDTO);
         Checklist checklist = checklistMapper.toEntity(checklistDTO);
         checklist = checklistRepository.save(checklist);

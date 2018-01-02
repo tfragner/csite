@@ -38,6 +38,8 @@ public class ChecklistCriteria implements Serializable {
 
     private StringFilter description;
 
+    private BooleanFilter claim;
+
     private LongFilter deliveryId;
 
     public ChecklistCriteria() {
@@ -91,6 +93,14 @@ public class ChecklistCriteria implements Serializable {
         this.description = description;
     }
 
+    public BooleanFilter getClaim() {
+        return claim;
+    }
+
+    public void setClaim(BooleanFilter claim) {
+        this.claim = claim;
+    }
+
     public LongFilter getDeliveryId() {
         return deliveryId;
     }
@@ -108,6 +118,7 @@ public class ChecklistCriteria implements Serializable {
                 (unloadingOk != null ? "unloadingOk=" + unloadingOk + ", " : "") +
                 (notDamaged != null ? "notDamaged=" + notDamaged + ", " : "") +
                 (description != null ? "description=" + description + ", " : "") +
+                (claim != null ? "claim=" + claim + ", " : "") +
                 (deliveryId != null ? "deliveryId=" + deliveryId + ", " : "") +
             "}";
     }

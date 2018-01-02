@@ -22,6 +22,7 @@
             <th><span jhiTranslate="csiteApp.checklist.unloadingOk">Unloading Ok</span></th>
             <th><span jhiTranslate="csiteApp.checklist.notDamaged">Not Damaged</span></th>
             <th><span jhiTranslate="csiteApp.checklist.description">Description</span></th>
+            <th><span jhiTranslate="csiteApp.checklist.claim">Claim</span></th>
             <th><span jhiTranslate="csiteApp.checklist.delivery">Delivery</span></th>
             <th></th>
             </tr>
@@ -34,6 +35,7 @@
                 <td>{{checklist.unloadingOk}}</td>
                 <td>{{checklist.notDamaged}}</td>
                 <td>{{checklist.description}}</td>
+                <td>{{checklist.claim}}</td>
                 <td>
                     <div *ngIf="checklist.deliveryId">
                         <a [routerLink]="['../delivery', checklist.deliveryId  ]" >{{checklist.deliveryId}}</a>
