@@ -15,14 +15,14 @@
             "detail": {
                 "title": "Construction Site"
             },
-            "prjNumber": "Prj Number",
-            "prjName": "Prj Name",
-            "kran": "Kran",
-            "stapler": "Stapler",
-            "maxLKWType": "Max LKW Type",
+            "prjNumber": "ID",
+            "prjName": "Name",
+            "kran": "Crane",
+            "stapler": "Forklift",
+            "maxLKWType": "Maximum permissible Truck-Type",
             "workpackage": "Workpackage",
             "location": "Location",
-            "container": "Container",
+            "container": "Person in Charge",
             "customer": "Customer"
         }
     }

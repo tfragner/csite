@@ -2,22 +2,22 @@
     "csiteApp": {
         "article" : {
             "home": {
-                "title": "Articles",
-                "createLabel": "Article erstellen",
-                "createOrEditLabel": "Article erstellen oder bearbeiten"
+                "title": "Artikel",
+                "createLabel": "Artikel erstellen",
+                "createOrEditLabel": "Artikel erstellen oder bearbeiten"
             },
-            "created": "Article erstellt mit ID {{ param }}",
-            "updated": "Article aktualisiert mit ID {{ param }}",
-            "deleted": "Article gelöscht mit ID {{ param }}",
+            "created": "Artikel erstellt mit ID {{ param }}",
+            "updated": "Artikel aktualisiert mit ID {{ param }}",
+            "deleted": "Artikel gelöscht mit ID {{ param }}",
             "delete": {
-                "question": "Soll Article {{ id }} wirklich dauerhaft gelöscht werden?"
+                "question": "Soll Artikel {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
-                "title": "Article"
+                "title": "Artikel"
             },
             "name": "Name",
-            "quantity": "Quantity",
-            "delivery": "Delivery"
+            "quantity": "Menge",
+            "delivery": "Lieferung"
         }
     }
 }
