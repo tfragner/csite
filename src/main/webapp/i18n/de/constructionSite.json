@@ -2,28 +2,28 @@
     "csiteApp": {
         "constructionSite" : {
             "home": {
-                "title": "Construction Sites",
-                "createLabel": "Construction Site erstellen",
-                "createOrEditLabel": "Construction Site erstellen oder bearbeiten"
+                "title": "Baustelles",
+                "createLabel": "Baustelle erstellen",
+                "createOrEditLabel": "Baustelle erstellen oder bearbeiten"
             },
-            "created": "Construction Site erstellt mit ID {{ param }}",
-            "updated": "Construction Site aktualisiert mit ID {{ param }}",
-            "deleted": "Construction Site gelöscht mit ID {{ param }}",
+            "created": "Baustelle erstellt mit ID {{ param }}",
+            "updated": "Baustelle aktualisiert mit ID {{ param }}",
+            "deleted": "Baustelle gelöscht mit ID {{ param }}",
             "delete": {
-                "question": "Soll Construction Site {{ id }} wirklich dauerhaft gelöscht werden?"
+                "question": "Soll Baustelle {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
                 "title": "Baustelle"
             },
-            "prjNumber": "Prj Number",
-            "prjName": "Prj Name",
+            "prjNumber": "ID",
+            "prjName": "Name",
             "kran": "Kran",
             "stapler": "Stapler",
-            "maxLKWType": "Max LKW Type",
-            "workpackage": "Workpackage",
-            "location": "Location",
-            "container": "Container",
-            "customer": "Customer"
+            "maxLKWType": "Maximal zulässiger LKW-Type",
+            "workpackage": "Arbeitspaket",
+            "location": "Position",
+            "container": "Verantwortlicher",
+            "customer": "Kunde"
         }
     }
 }

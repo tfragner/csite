@@ -2,7 +2,7 @@
     "csiteApp": {
         "person" : {
             "home": {
-                "title": "People",
+                "title": "Person",
                 "createLabel": "Person erstellen",
                 "createOrEditLabel": "Person erstellen oder bearbeiten"
             },
@@ -15,12 +15,12 @@
             "detail": {
                 "title": "Person"
             },
-            "lastName": "Last Name",
-            "firstName": "First Name",
-            "type": "Type",
-            "delivery": "Delivery",
-            "constructionsite": "Constructionsite",
-            "constsitecustomer": "Constsitecustomer"
+            "lastName": "Nachname",
+            "firstName": "Vorname",
+            "type": "Typ",
+            "delivery": "Lieferung",
+            "constructionsite": "Baustelle",
+            "constsitecustomer": "Kunde"
         }
     }
 }

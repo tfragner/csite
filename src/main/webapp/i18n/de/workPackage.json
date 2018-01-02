@@ -2,27 +2,27 @@
     "csiteApp": {
         "workPackage" : {
             "home": {
-                "title": "Work Packages",
-                "createLabel": "Work Package erstellen",
-                "createOrEditLabel": "Work Package erstellen oder bearbeiten"
+                "title": "Arbeitspakete",
+                "createLabel": "Arbeitspaket erstellen",
+                "createOrEditLabel": "Arbeitspaket erstellen oder bearbeiten"
             },
-            "created": "Work Package erstellt mit ID {{ param }}",
-            "updated": "Work Package aktualisiert mit ID {{ param }}",
-            "deleted": "Work Package gelöscht mit ID {{ param }}",
+            "created": "Arbeitspaket erstellt mit ID {{ param }}",
+            "updated": "Arbeitspaket aktualisiert mit ID {{ param }}",
+            "deleted": "Arbeitspaket gelöscht mit ID {{ param }}",
             "delete": {
-                "question": "Soll Work Package {{ id }} wirklich dauerhaft gelöscht werden?"
+                "question": "Soll Arbeitspaket {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
-                "title": "Work Package"
+                "title": "Arbeitspaket"
             },
             "name": "Name",
-            "startDate": "Start Date",
-            "endDate": "End Date",
+            "startDate": "Beginn",
+            "endDate": "Ende",
             "status": "Status",
-            "duration": "Duration",
-            "progress": "Progress",
-            "delivery": "Delivery",
-            "constructionsite": "Constructionsite"
+            "duration": "Dauer",
+            "progress": "Fortschritt",
+            "delivery": "Lieferung",
+            "constructionsite": "Baustelle"
         }
     }
 }

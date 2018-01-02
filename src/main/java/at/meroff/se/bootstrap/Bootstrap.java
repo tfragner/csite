@@ -23,20 +23,23 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private final WorkPackageService workPackageService;
     private final LocationService locationService;
     private final DeliveryService deliveryService;
-
+    private final ArticleService articleService;
 
     public Bootstrap(PersonService personService,
                      ConstructionSiteService constructionSiteService,
                      WorkPackageService workPackageService,
                      LocationService locationService,
-                     DeliveryService deliveryService) {
+                     DeliveryService deliveryService,
+                     ArticleService articleService) {
         this.personService = personService;
         this.constructionSiteService = constructionSiteService;
         this.workPackageService = workPackageService;
         this.locationService = locationService;
         this.deliveryService = deliveryService;
+        this.articleService = articleService;
 
     }
+
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -194,6 +197,18 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         d2.setStatus(DeliveryStatus.OPEN);
         d2.setPersonId(1L);
         d2 = deliveryService.save(d2);
+
+        ArticleDTO a1 = new ArticleDTO();
+        a1.setDeliveryId(d1.getId());
+        a1.setName("Holz");
+        a1.setQuantity(5);
+        a1 = articleService.save(a1);
+
+        ArticleDTO a2 = new ArticleDTO();
+        a2.setDeliveryId(d2.getId());
+        a2.setName("Holz");
+        a2.setQuantity(5);
+        a2 = articleService.save(a2);
 
     }
 }
