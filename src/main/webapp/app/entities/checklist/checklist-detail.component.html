@@ -24,6 +24,10 @@
         <dd>
             <span>{{checklist.description}}</span>
         </dd>
+        <dt><span jhiTranslate="csiteApp.checklist.claim">Claim</span></dt>
+        <dd>
+            <span>{{checklist.claim}}</span>
+        </dd>
         <dt *ngIf="!blabla"><span jhiTranslate="csiteApp.checklist.delivery">Delivery</span></dt>
         <dd *ngIf="!blabla">
             <div *ngIf="checklist.deliveryId">

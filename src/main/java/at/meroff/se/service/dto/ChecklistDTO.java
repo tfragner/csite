@@ -23,6 +23,8 @@ public class ChecklistDTO implements Serializable {
 
     private String description;
 
+    private Boolean claim;
+
     private Long deliveryId;
 
     public Long getId() {
@@ -73,6 +75,14 @@ public class ChecklistDTO implements Serializable {
         this.description = description;
     }
 
+    public Boolean isClaim() {
+        return claim;
+    }
+
+    public void setClaim(Boolean claim) {
+        this.claim = claim;
+    }
+
     public Long getDeliveryId() {
         return deliveryId;
     }
@@ -111,6 +121,7 @@ public class ChecklistDTO implements Serializable {
             ", unloadingOk='" + isUnloadingOk() + "'" +
             ", notDamaged='" + isNotDamaged() + "'" +
             ", description='" + getDescription() + "'" +
+            ", claim='" + isClaim() + "'" +
             "}";
     }
 }

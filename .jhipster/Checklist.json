@@ -30,12 +30,16 @@
         {
             "fieldName": "description",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "claim",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20171105204547",
-    "entityTableName": "checklist",
     "dto": "mapstruct",
-    "pagination": "no",
     "service": "serviceClass",
-    "jpaMetamodelFiltering": true
+    "entityTableName": "checklist",
+    "jpaMetamodelFiltering": true,
+    "pagination": "no"
 }

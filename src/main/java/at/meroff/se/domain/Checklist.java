@@ -37,6 +37,9 @@ public class Checklist implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "claim")
+    private Boolean claim;
+
     @OneToOne
     @JoinColumn(unique = true)
     @JsonIgnore
@@ -116,6 +119,19 @@ public class Checklist implements Serializable {
         this.description = description;
     }
 
+    public Boolean isClaim() {
+        return claim;
+    }
+
+    public Checklist claim(Boolean claim) {
+        this.claim = claim;
+        return this;
+    }
+
+    public void setClaim(Boolean claim) {
+        this.claim = claim;
+    }
+
     public Delivery getDelivery() {
         return delivery;
     }
@@ -159,6 +175,7 @@ public class Checklist implements Serializable {
             ", unloadingOk='" + isUnloadingOk() + "'" +
             ", notDamaged='" + isNotDamaged() + "'" +
             ", description='" + getDescription() + "'" +
+            ", claim='" + isClaim() + "'" +
             "}";
     }
 }

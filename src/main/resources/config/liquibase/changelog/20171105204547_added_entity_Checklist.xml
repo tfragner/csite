@@ -41,6 +41,10 @@
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+
+            <column name="claim" type="bit">
+                <constraints nullable="true" />
+            </column>
             <column name="delivery_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>

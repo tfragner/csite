@@ -57,6 +57,9 @@ public class ChecklistResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_CLAIM = false;
+    private static final Boolean UPDATED_CLAIM = true;
+
     @Autowired
     private ChecklistRepository checklistRepository;
 
@@ -107,7 +110,8 @@ public class ChecklistResourceIntTest {
             .complete(DEFAULT_COMPLETE)
             .unloadingOk(DEFAULT_UNLOADING_OK)
             .notDamaged(DEFAULT_NOT_DAMAGED)
-            .description(DEFAULT_DESCRIPTION);
+            .description(DEFAULT_DESCRIPTION)
+            .claim(DEFAULT_CLAIM);
         return checklist;
     }
 
@@ -137,6 +141,7 @@ public class ChecklistResourceIntTest {
         assertThat(testChecklist.isUnloadingOk()).isEqualTo(DEFAULT_UNLOADING_OK);
         assertThat(testChecklist.isNotDamaged()).isEqualTo(DEFAULT_NOT_DAMAGED);
         assertThat(testChecklist.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testChecklist.isClaim()).isEqualTo(DEFAULT_CLAIM);
     }
 
     @Test
@@ -174,7 +179,8 @@ public class ChecklistResourceIntTest {
             .andExpect(jsonPath("$.[*].complete").value(hasItem(DEFAULT_COMPLETE.booleanValue())))
             .andExpect(jsonPath("$.[*].unloadingOk").value(hasItem(DEFAULT_UNLOADING_OK.booleanValue())))
             .andExpect(jsonPath("$.[*].notDamaged").value(hasItem(DEFAULT_NOT_DAMAGED.booleanValue())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].claim").value(hasItem(DEFAULT_CLAIM.booleanValue())));
     }
 
     @Test
@@ -192,7 +198,8 @@ public class ChecklistResourceIntTest {
             .andExpect(jsonPath("$.complete").value(DEFAULT_COMPLETE.booleanValue()))
             .andExpect(jsonPath("$.unloadingOk").value(DEFAULT_UNLOADING_OK.booleanValue()))
             .andExpect(jsonPath("$.notDamaged").value(DEFAULT_NOT_DAMAGED.booleanValue()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.claim").value(DEFAULT_CLAIM.booleanValue()));
     }
 
     @Test
@@ -390,6 +397,45 @@ public class ChecklistResourceIntTest {
         defaultChecklistShouldNotBeFound("description.specified=false");
     }
 
+    @Test
+    @Transactional
+    public void getAllChecklistsByClaimIsEqualToSomething() throws Exception {
+        // Initialize the database
+        checklistRepository.saveAndFlush(checklist);
+
+        // Get all the checklistList where claim equals to DEFAULT_CLAIM
+        defaultChecklistShouldBeFound("claim.equals=" + DEFAULT_CLAIM);
+
+        // Get all the checklistList where claim equals to UPDATED_CLAIM
+        defaultChecklistShouldNotBeFound("claim.equals=" + UPDATED_CLAIM);
+    }
+
+    @Test
+    @Transactional
+    public void getAllChecklistsByClaimIsInShouldWork() throws Exception {
+        // Initialize the database
+        checklistRepository.saveAndFlush(checklist);
+
+        // Get all the checklistList where claim in DEFAULT_CLAIM or UPDATED_CLAIM
+        defaultChecklistShouldBeFound("claim.in=" + DEFAULT_CLAIM + "," + UPDATED_CLAIM);
+
+        // Get all the checklistList where claim equals to UPDATED_CLAIM
+        defaultChecklistShouldNotBeFound("claim.in=" + UPDATED_CLAIM);
+    }
+
+    @Test
+    @Transactional
+    public void getAllChecklistsByClaimIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        checklistRepository.saveAndFlush(checklist);
+
+        // Get all the checklistList where claim is not null
+        defaultChecklistShouldBeFound("claim.specified=true");
+
+        // Get all the checklistList where claim is null
+        defaultChecklistShouldNotBeFound("claim.specified=false");
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -402,7 +448,8 @@ public class ChecklistResourceIntTest {
             .andExpect(jsonPath("$.[*].complete").value(hasItem(DEFAULT_COMPLETE.booleanValue())))
             .andExpect(jsonPath("$.[*].unloadingOk").value(hasItem(DEFAULT_UNLOADING_OK.booleanValue())))
             .andExpect(jsonPath("$.[*].notDamaged").value(hasItem(DEFAULT_NOT_DAMAGED.booleanValue())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].claim").value(hasItem(DEFAULT_CLAIM.booleanValue())));
     }
 
     /**
@@ -439,7 +486,8 @@ public class ChecklistResourceIntTest {
             .complete(UPDATED_COMPLETE)
             .unloadingOk(UPDATED_UNLOADING_OK)
             .notDamaged(UPDATED_NOT_DAMAGED)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .claim(UPDATED_CLAIM);
         ChecklistDTO checklistDTO = checklistMapper.toDto(updatedChecklist);
 
         restChecklistMockMvc.perform(put("/api/checklists")
@@ -456,6 +504,7 @@ public class ChecklistResourceIntTest {
         assertThat(testChecklist.isUnloadingOk()).isEqualTo(UPDATED_UNLOADING_OK);
         assertThat(testChecklist.isNotDamaged()).isEqualTo(UPDATED_NOT_DAMAGED);
         assertThat(testChecklist.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testChecklist.isClaim()).isEqualTo(UPDATED_CLAIM);
     }
 
     @Test
