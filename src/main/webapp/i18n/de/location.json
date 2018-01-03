@@ -2,18 +2,18 @@
     "csiteApp": {
         "location" : {
             "home": {
-                "title": "Position",
-                "createLabel": "Position erstellen",
-                "createOrEditLabel": "Position erstellen oder bearbeiten"
+                "title": "Standort",
+                "createLabel": "Standort erstellen",
+                "createOrEditLabel": "Standort erstellen oder bearbeiten"
             },
-            "created": "Position erstellt mit ID {{ param }}",
-            "updated": "Position aktualisiert mit ID {{ param }}",
-            "deleted": "Position gelöscht mit ID {{ param }}",
+            "created": "Standort erstellt mit ID {{ param }}",
+            "updated": "Standort aktualisiert mit ID {{ param }}",
+            "deleted": "Standort gelöscht mit ID {{ param }}",
             "delete": {
-                "question": "Soll Position {{ id }} wirklich dauerhaft gelöscht werden?"
+                "question": "Soll Standort {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
-                "title": "Position"
+                "title": "Standort"
             },
             "name": "Name",
             "longitude": "Longitude",
