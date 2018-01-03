@@ -2,7 +2,7 @@
     "csiteApp": {
         "constructionSite" : {
             "home": {
-                "title": "Baustelles",
+                "title": "Baustellen",
                 "createLabel": "Baustelle erstellen",
                 "createOrEditLabel": "Baustelle erstellen oder bearbeiten"
             },

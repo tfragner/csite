@@ -2,8 +2,8 @@
     "csiteApp": {
         "PersonType" : {
             "null": "",
-            "SUPPLIER": "SUPPLIER",
-            "CUSTOMER": "CUSTOMER",
+            "SUPPLIER": "LIEFERANT",
+            "CUSTOMER": "KUNDE",
             "PERSON": "PERSON"
         }
     }
