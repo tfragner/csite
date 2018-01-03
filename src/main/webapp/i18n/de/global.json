@@ -6,7 +6,7 @@
             "home": "Startseite",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Entitäten",
+                "main": "Baustellenverwaltung",
                 "constructionSite": "Baustellen",
                 "location": "Standort",
                 "workPackage": "Arbeitspakete",
