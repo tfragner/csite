@@ -19,7 +19,7 @@
         "password":"Passwort",
         "usertype": "Typ",
         "sales": "Verkauf",
-        "container" : "Kontainer",
+        "container" : "Container",
         "driver" : "Lieferant",
         "usergroups" : "Benutzergruppen"
 
