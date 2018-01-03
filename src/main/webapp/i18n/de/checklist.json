@@ -2,8 +2,8 @@
     "csiteApp": {
         "checklist" : {
             "home": {
-                "title": "Checklisten",
-                "createLabel": "Checklist erstellen",
+                "title": "Abnahmeprotokolle",
+                "createLabel": "Abnahmeprotokoll erstellen",
                 "createOrEditLabel": "Checklist erstellen oder bearbeiten"
             },
             "created": "Checkliste erstellt mit ID {{ param }}",
@@ -17,7 +17,7 @@
             },
             "inTime": "Pünktlich",
             "complete": "Komplett",
-            "unloadingOk": "Abladung Ok",
+            "unloadingOk": "Abladung in Ordnung",
             "notDamaged": "Nicht Beschädigt",
             "description": "Beschreibung",
             "claim": "Reklamation",

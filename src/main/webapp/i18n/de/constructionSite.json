@@ -21,7 +21,7 @@
             "stapler": "Stapler",
             "maxLKWType": "Maximal zulässiger LKW-Typ",
             "workpackage": "Arbeitspaket",
-            "location": "Position",
+            "location": "Standort",
             "container": "Verantwortlicher",
             "customer": "Kunde"
         }
