@@ -24,7 +24,7 @@
             "image": "Image",
             "lkwType": "Lkw Typ",
             "article": "Artikel",
-            "checklist": "Checkliste",
+            "checklist": "Report",
             "workpackage": "Arbeitspaket",
             "person": "Person",
             "location": "Standort"

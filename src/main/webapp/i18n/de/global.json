@@ -8,12 +8,12 @@
             "entities": {
                 "main": "Entitäten",
                 "constructionSite": "Baustellen",
-                "location": "Standort",
+                "location": "Standorte",
                 "workPackage": "Arbeitspakete",
                 "delivery": "Lieferungen",
                 "article": "Artikel",
                 "person": "Person",
-                "checklist": "Abnahmeprotokoll",
+                "checklist": "Report",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
