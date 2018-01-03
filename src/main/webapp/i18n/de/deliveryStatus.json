@@ -2,9 +2,9 @@
     "csiteApp": {
         "DeliveryStatus" : {
             "null": "",
-            "OPEN": "OPEN",
-            "CLOSED": "CLOSED",
-            "RECLAMATION": "RECLAMATION"
+            "OPEN": "OFFEN",
+            "CLOSED": "GESCHLOSSEN",
+            "RECLAMATION": "REKLAMATION"
         }
     }
 }

@@ -2,32 +2,32 @@
     "csiteApp": {
         "delivery" : {
             "home": {
-                "title": "Deliveries",
-                "createLabel": "Delivery erstellen",
-                "createOrEditLabel": "Delivery erstellen oder bearbeiten"
+                "title": "Lieferungen",
+                "createLabel": "Lieferung erstellen",
+                "createOrEditLabel": "Lieferung erstellen oder bearbeiten"
             },
-            "created": "Delivery erstellt mit ID {{ param }}",
-            "updated": "Delivery aktualisiert mit ID {{ param }}",
-            "deleted": "Delivery gelöscht mit ID {{ param }}",
+            "created": "Lieferung erstellt mit ID {{ param }}",
+            "updated": "Lieferung aktualisiert mit ID {{ param }}",
+            "deleted": "Lieferung gelöscht mit ID {{ param }}",
             "delete": {
-                "question": "Soll Delivery {{ id }} wirklich dauerhaft gelöscht werden?"
+                "question": "Soll Lieferung {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
-                "title": "Delivery"
+                "title": "Lieferung"
             },
             "orderNumber": "Nr.",
             "kalenderwoche": "KW",
-            "date": "Date",
-            "unloading": "Unloading",
-            "avisoType": "Aviso Type",
+            "date": "Datum",
+            "unloading": "Abladung",
+            "avisoType": "Aviso Typ",
             "status": "Status",
             "image": "Image",
-            "lkwType": "Lkw Type",
-            "article": "Article",
-            "checklist": "Checklist",
-            "workpackage": "Workpackage",
+            "lkwType": "Lkw Typ",
+            "article": "Artikel",
+            "checklist": "Checkliste",
+            "workpackage": "Arbeitspaket",
             "person": "Person",
-            "location": "Location"
+            "location": "Position"
         }
     }
 }
