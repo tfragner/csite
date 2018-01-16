@@ -13,7 +13,7 @@
                 "question": "Soll Checklist {{ id }} wirklich dauerhaft gelöscht werden?"
             },
             "detail": {
-                "title": "Checkliste"
+                "title": "Abnahmeprotokolle"
             },
             "inTime": "Pünktlich",
             "complete": "Komplett",
