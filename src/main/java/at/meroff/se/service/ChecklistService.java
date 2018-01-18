@@ -49,7 +49,7 @@ public class ChecklistService {
             one.setStatus(DeliveryStatus.CLOSED);
             deliveryRepository.save(one);
         }
-        if (checklistDTO.isClaim()) {
+        if (checklistDTO.isClaim() != null && checklistDTO.isClaim()) {
             Delivery one = deliveryRepository.findOne(checklistDTO.getDeliveryId());
             one.setStatus(DeliveryStatus.RECLAMATION);
             deliveryRepository.save(one);
